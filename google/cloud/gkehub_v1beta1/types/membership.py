@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
-
 
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
@@ -57,7 +54,6 @@ __protobuf__ = proto.module(
 
 class Membership(proto.Message):
     r"""Membership contains information about a member cluster.
-
     Attributes:
         name (str):
             Output only. The full, unique name of this Membership
@@ -143,34 +139,22 @@ class Membership(proto.Message):
         ON_PREM = 1
         MULTI_CLOUD = 2
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     labels = proto.MapField(proto.STRING, proto.STRING, number=2)
-
-    description = proto.Field(proto.STRING, number=3)
-
+    description = proto.Field(proto.STRING, number=3,)
     endpoint = proto.Field(
         proto.MESSAGE, number=4, oneof="type", message="MembershipEndpoint",
     )
-
     state = proto.Field(proto.MESSAGE, number=5, message="MembershipState",)
-
     authority = proto.Field(proto.MESSAGE, number=9, message="Authority",)
-
     create_time = proto.Field(proto.MESSAGE, number=6, message=timestamp.Timestamp,)
-
     update_time = proto.Field(proto.MESSAGE, number=7, message=timestamp.Timestamp,)
-
     delete_time = proto.Field(proto.MESSAGE, number=8, message=timestamp.Timestamp,)
-
-    external_id = proto.Field(proto.STRING, number=10)
-
+    external_id = proto.Field(proto.STRING, number=10,)
     last_connection_time = proto.Field(
         proto.MESSAGE, number=11, message=timestamp.Timestamp,
     )
-
-    unique_id = proto.Field(proto.STRING, number=12)
-
+    unique_id = proto.Field(proto.STRING, number=12,)
     infrastructure_type = proto.Field(proto.ENUM, number=13, enum=InfrastructureType,)
 
 
@@ -199,11 +183,9 @@ class MembershipEndpoint(proto.Message):
     """
 
     gke_cluster = proto.Field(proto.MESSAGE, number=4, message="GkeCluster",)
-
     kubernetes_metadata = proto.Field(
         proto.MESSAGE, number=5, message="KubernetesMetadata",
     )
-
     kubernetes_resource = proto.Field(
         proto.MESSAGE, number=6, message="KubernetesResource",
     )
@@ -254,16 +236,13 @@ class KubernetesResource(proto.Message):
             generation.
     """
 
-    membership_cr_manifest = proto.Field(proto.STRING, number=1)
-
+    membership_cr_manifest = proto.Field(proto.STRING, number=1,)
     membership_resources = proto.RepeatedField(
         proto.MESSAGE, number=2, message="ResourceManifest",
     )
-
     connect_resources = proto.RepeatedField(
         proto.MESSAGE, number=3, message="ResourceManifest",
     )
-
     resource_options = proto.Field(proto.MESSAGE, number=4, message="ResourceOptions",)
 
 
@@ -284,9 +263,8 @@ class ResourceOptions(proto.Message):
             apiserver versions <1.16.
     """
 
-    connect_version = proto.Field(proto.STRING, number=1)
-
-    v1beta1_crd = proto.Field(proto.BOOL, number=2)
+    connect_version = proto.Field(proto.STRING, number=1,)
+    v1beta1_crd = proto.Field(proto.BOOL, number=2,)
 
 
 class ResourceManifest(proto.Message):
@@ -305,14 +283,12 @@ class ResourceManifest(proto.Message):
             resource in a cluster.
     """
 
-    manifest = proto.Field(proto.STRING, number=1)
-
-    cluster_scoped = proto.Field(proto.BOOL, number=2)
+    manifest = proto.Field(proto.STRING, number=1,)
+    cluster_scoped = proto.Field(proto.BOOL, number=2,)
 
 
 class GkeCluster(proto.Message):
     r"""GkeCluster contains information specific to GKE clusters.
-
     Attributes:
         resource_link (str):
             Immutable. Self-link of the GCP resource for
@@ -322,7 +298,7 @@ class GkeCluster(proto.Message):
             Zonal clusters are also supported.
     """
 
-    resource_link = proto.Field(proto.STRING, number=1)
+    resource_link = proto.Field(proto.STRING, number=1,)
 
 
 class KubernetesMetadata(proto.Message):
@@ -356,16 +332,11 @@ class KubernetesMetadata(proto.Message):
             updated internally for API consumers.
     """
 
-    kubernetes_api_server_version = proto.Field(proto.STRING, number=1)
-
-    node_provider_id = proto.Field(proto.STRING, number=2)
-
-    node_count = proto.Field(proto.INT32, number=3)
-
-    vcpu_count = proto.Field(proto.INT32, number=4)
-
-    memory_mb = proto.Field(proto.INT32, number=5)
-
+    kubernetes_api_server_version = proto.Field(proto.STRING, number=1,)
+    node_provider_id = proto.Field(proto.STRING, number=2,)
+    node_count = proto.Field(proto.INT32, number=3,)
+    vcpu_count = proto.Field(proto.INT32, number=4,)
+    memory_mb = proto.Field(proto.INT32, number=5,)
     update_time = proto.Field(proto.MESSAGE, number=100, message=timestamp.Timestamp,)
 
 
@@ -411,18 +382,14 @@ class Authority(proto.Message):
             using this field.
     """
 
-    issuer = proto.Field(proto.STRING, number=1)
-
-    workload_identity_pool = proto.Field(proto.STRING, number=2)
-
-    identity_provider = proto.Field(proto.STRING, number=3)
-
-    oidc_jwks = proto.Field(proto.BYTES, number=4)
+    issuer = proto.Field(proto.STRING, number=1,)
+    workload_identity_pool = proto.Field(proto.STRING, number=2,)
+    identity_provider = proto.Field(proto.STRING, number=3,)
+    oidc_jwks = proto.Field(proto.BYTES, number=4,)
 
 
 class MembershipState(proto.Message):
     r"""State of the Membership resource.
-
     Attributes:
         code (google.cloud.gkehub_v1beta1.types.MembershipState.Code):
             Output only. The current state of the
@@ -443,9 +410,7 @@ class MembershipState(proto.Message):
         SERVICE_UPDATING = 5
 
     code = proto.Field(proto.ENUM, number=1, enum=Code,)
-
-    description = proto.Field(proto.STRING, number=2)
-
+    description = proto.Field(proto.STRING, number=2,)
     update_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
 
 
@@ -497,15 +462,11 @@ class ListMembershipsRequest(proto.Message):
             https://google.aip.dev/132#ordering.
     """
 
-    parent = proto.Field(proto.STRING, number=1)
-
-    page_size = proto.Field(proto.INT32, number=2)
-
-    page_token = proto.Field(proto.STRING, number=3)
-
-    filter = proto.Field(proto.STRING, number=4)
-
-    order_by = proto.Field(proto.STRING, number=5)
+    parent = proto.Field(proto.STRING, number=1,)
+    page_size = proto.Field(proto.INT32, number=2,)
+    page_token = proto.Field(proto.STRING, number=3,)
+    filter = proto.Field(proto.STRING, number=4,)
+    order_by = proto.Field(proto.STRING, number=5,)
 
 
 class ListMembershipsResponse(proto.Message):
@@ -529,10 +490,8 @@ class ListMembershipsResponse(proto.Message):
         return self
 
     resources = proto.RepeatedField(proto.MESSAGE, number=1, message="Membership",)
-
-    next_page_token = proto.Field(proto.STRING, number=2)
-
-    unreachable = proto.RepeatedField(proto.STRING, number=3)
+    next_page_token = proto.Field(proto.STRING, number=2,)
+    unreachable = proto.RepeatedField(proto.STRING, number=3,)
 
 
 class GetMembershipRequest(proto.Message):
@@ -545,7 +504,7 @@ class GetMembershipRequest(proto.Message):
             ``projects/*/locations/*/memberships/*``.
     """
 
-    name = proto.Field(proto.STRING, number=1)
+    name = proto.Field(proto.STRING, number=1,)
 
 
 class CreateMembershipRequest(proto.Message):
@@ -574,10 +533,8 @@ class CreateMembershipRequest(proto.Message):
             Required. The membership to create.
     """
 
-    parent = proto.Field(proto.STRING, number=1)
-
-    membership_id = proto.Field(proto.STRING, number=2)
-
+    parent = proto.Field(proto.STRING, number=1,)
+    membership_id = proto.Field(proto.STRING, number=2,)
     resource = proto.Field(proto.MESSAGE, number=3, message="Membership",)
 
 
@@ -591,7 +548,7 @@ class DeleteMembershipRequest(proto.Message):
             ``projects/*/locations/*/memberships/*``.
     """
 
-    name = proto.Field(proto.STRING, number=1)
+    name = proto.Field(proto.STRING, number=1,)
 
 
 class UpdateMembershipRequest(proto.Message):
@@ -614,10 +571,8 @@ class UpdateMembershipRequest(proto.Message):
             possible to update a key's value to the empty string.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
-
     resource = proto.Field(proto.MESSAGE, number=3, message="Membership",)
 
 
@@ -648,17 +603,12 @@ class GenerateConnectManifestRequest(proto.Message):
             the registry, if not public.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     connect_agent = proto.Field(proto.MESSAGE, number=2, message="ConnectAgent",)
-
-    version = proto.Field(proto.STRING, number=3)
-
-    is_upgrade = proto.Field(proto.BOOL, number=4)
-
-    registry = proto.Field(proto.STRING, number=5)
-
-    image_pull_secret_content = proto.Field(proto.BYTES, number=6)
+    version = proto.Field(proto.STRING, number=3,)
+    is_upgrade = proto.Field(proto.BOOL, number=4,)
+    registry = proto.Field(proto.STRING, number=5,)
+    image_pull_secret_content = proto.Field(proto.BYTES, number=6,)
 
 
 class GenerateConnectManifestResponse(proto.Message):
@@ -689,8 +639,7 @@ class ConnectAgentResource(proto.Message):
     """
 
     type_ = proto.Field(proto.MESSAGE, number=1, message="TypeMeta",)
-
-    manifest = proto.Field(proto.STRING, number=2)
+    manifest = proto.Field(proto.STRING, number=2,)
 
 
 class TypeMeta(proto.Message):
@@ -704,14 +653,12 @@ class TypeMeta(proto.Message):
             APIVersion of the resource (e.g. v1).
     """
 
-    kind = proto.Field(proto.STRING, number=1)
-
-    api_version = proto.Field(proto.STRING, number=2)
+    kind = proto.Field(proto.STRING, number=1,)
+    api_version = proto.Field(proto.STRING, number=2,)
 
 
 class ConnectAgent(proto.Message):
     r"""The information required from end users to use GKE Connect.
-
     Attributes:
         name (str):
             Do not set.
@@ -731,11 +678,9 @@ class ConnectAgent(proto.Message):
             must be granted with an additional IAM binding.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    proxy = proto.Field(proto.BYTES, number=2)
-
-    namespace = proto.Field(proto.STRING, number=3)
+    name = proto.Field(proto.STRING, number=1,)
+    proxy = proto.Field(proto.BYTES, number=2,)
+    namespace = proto.Field(proto.STRING, number=3,)
 
 
 class ValidateExclusivityRequest(proto.Message):
@@ -757,11 +702,9 @@ class ValidateExclusivityRequest(proto.Message):
             CreateMembership call with the same name.
     """
 
-    parent = proto.Field(proto.STRING, number=1)
-
-    cr_manifest = proto.Field(proto.STRING, number=2)
-
-    intended_membership = proto.Field(proto.STRING, number=3)
+    parent = proto.Field(proto.STRING, number=1,)
+    cr_manifest = proto.Field(proto.STRING, number=2,)
+    intended_membership = proto.Field(proto.STRING, number=3,)
 
 
 class ValidateExclusivityResponse(proto.Message):
@@ -801,11 +744,9 @@ class GenerateExclusivityManifestRequest(proto.Message):
             the resource does not exist.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
-    crd_manifest = proto.Field(proto.STRING, number=2)
-
-    cr_manifest = proto.Field(proto.STRING, number=3)
+    name = proto.Field(proto.STRING, number=1,)
+    crd_manifest = proto.Field(proto.STRING, number=2,)
+    cr_manifest = proto.Field(proto.STRING, number=3,)
 
 
 class GenerateExclusivityManifestResponse(proto.Message):
@@ -824,14 +765,12 @@ class GenerateExclusivityManifestResponse(proto.Message):
             Empty if no update needs to be applied.
     """
 
-    crd_manifest = proto.Field(proto.STRING, number=1)
-
-    cr_manifest = proto.Field(proto.STRING, number=2)
+    crd_manifest = proto.Field(proto.STRING, number=1,)
+    cr_manifest = proto.Field(proto.STRING, number=2,)
 
 
 class OperationMetadata(proto.Message):
     r"""Represents the metadata of the long-running operation.
-
     Attributes:
         create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. The time the operation was
@@ -860,18 +799,12 @@ class OperationMetadata(proto.Message):
     """
 
     create_time = proto.Field(proto.MESSAGE, number=1, message=timestamp.Timestamp,)
-
     end_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
-
-    target = proto.Field(proto.STRING, number=3)
-
-    verb = proto.Field(proto.STRING, number=4)
-
-    status_detail = proto.Field(proto.STRING, number=5)
-
-    cancel_requested = proto.Field(proto.BOOL, number=6)
-
-    api_version = proto.Field(proto.STRING, number=7)
+    target = proto.Field(proto.STRING, number=3,)
+    verb = proto.Field(proto.STRING, number=4,)
+    status_detail = proto.Field(proto.STRING, number=5,)
+    cancel_requested = proto.Field(proto.BOOL, number=6,)
+    api_version = proto.Field(proto.STRING, number=7,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
