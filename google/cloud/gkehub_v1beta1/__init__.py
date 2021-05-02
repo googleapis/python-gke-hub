@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,7 @@
 #
 
 from .services.gke_hub_membership_service import GkeHubMembershipServiceClient
+
 from .types.membership import Authority
 from .types.membership import ConnectAgent
 from .types.membership import ConnectAgentResource
@@ -41,7 +41,6 @@ from .types.membership import TypeMeta
 from .types.membership import UpdateMembershipRequest
 from .types.membership import ValidateExclusivityRequest
 from .types.membership import ValidateExclusivityResponse
-
 
 __all__ = (
     "Authority",
