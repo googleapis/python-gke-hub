@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.3](https://www.github.com/googleapis/python-gke-hub/compare/v0.1.2...v0.1.3) (2021-06-19)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-gke-hub/issues/1127)) ([#40](https://www.github.com/googleapis/python-gke-hub/issues/40)) ([8f703d7](https://www.github.com/googleapis/python-gke-hub/commit/8f703d74ad3d9b3ea31b2136ed4e97594b52f832)), closes [#1126](https://www.github.com/googleapis/python-gke-hub/issues/1126)
+
 ### [0.1.2](https://www.github.com/googleapis/python-gke-hub/compare/v0.1.1...v0.1.2) (2021-06-16)
 
 
