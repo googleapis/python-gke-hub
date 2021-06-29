@@ -25,13 +25,13 @@ from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 import grpc  # type: ignore
 
-from google.cloud.gkehub_v1beta1.types import membership
+from google.cloud.gkehub_v1alpha2.types import membership
 from google.longrunning import operations_pb2  # type: ignore
-from .base import GkeHubMembershipServiceTransport, DEFAULT_CLIENT_INFO
+from .base import GkeHubTransport, DEFAULT_CLIENT_INFO
 
 
-class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
-    """gRPC backend transport for GkeHubMembershipService.
+class GkeHubGrpcTransport(GkeHubTransport):
+    """gRPC backend transport for GkeHub.
 
     GKE Hub CRUD API for the Membership resource.
     The Membership service is currently only available in the global
@@ -266,7 +266,7 @@ class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
         # to pass in the functions for each.
         if "list_memberships" not in self._stubs:
             self._stubs["list_memberships"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/ListMemberships",
+                "/google.cloud.gkehub.v1alpha2.GkeHub/ListMemberships",
                 request_serializer=membership.ListMembershipsRequest.serialize,
                 response_deserializer=membership.ListMembershipsResponse.deserialize,
             )
@@ -292,7 +292,7 @@ class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
         # to pass in the functions for each.
         if "get_membership" not in self._stubs:
             self._stubs["get_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/GetMembership",
+                "/google.cloud.gkehub.v1alpha2.GkeHub/GetMembership",
                 request_serializer=membership.GetMembershipRequest.serialize,
                 response_deserializer=membership.Membership.deserialize,
             )
@@ -318,7 +318,7 @@ class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
         # to pass in the functions for each.
         if "create_membership" not in self._stubs:
             self._stubs["create_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/CreateMembership",
+                "/google.cloud.gkehub.v1alpha2.GkeHub/CreateMembership",
                 request_serializer=membership.CreateMembershipRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
@@ -344,7 +344,7 @@ class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
         # to pass in the functions for each.
         if "delete_membership" not in self._stubs:
             self._stubs["delete_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/DeleteMembership",
+                "/google.cloud.gkehub.v1alpha2.GkeHub/DeleteMembership",
                 request_serializer=membership.DeleteMembershipRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
@@ -370,7 +370,7 @@ class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
         # to pass in the functions for each.
         if "update_membership" not in self._stubs:
             self._stubs["update_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/UpdateMembership",
+                "/google.cloud.gkehub.v1alpha2.GkeHub/UpdateMembership",
                 request_serializer=membership.UpdateMembershipRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
@@ -400,27 +400,32 @@ class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
         # to pass in the functions for each.
         if "generate_connect_manifest" not in self._stubs:
             self._stubs["generate_connect_manifest"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/GenerateConnectManifest",
+                "/google.cloud.gkehub.v1alpha2.GkeHub/GenerateConnectManifest",
                 request_serializer=membership.GenerateConnectManifestRequest.serialize,
                 response_deserializer=membership.GenerateConnectManifestResponse.deserialize,
             )
         return self._stubs["generate_connect_manifest"]
 
     @property
-    def validate_exclusivity(
+    def initialize_hub(
         self,
-    ) -> Callable[
-        [membership.ValidateExclusivityRequest], membership.ValidateExclusivityResponse
-    ]:
-        r"""Return a callable for the validate exclusivity method over gRPC.
+    ) -> Callable[[membership.InitializeHubRequest], membership.InitializeHubResponse]:
+        r"""Return a callable for the initialize hub method over gRPC.
 
-        ValidateExclusivity validates the state of
-        exclusivity in the cluster. The validation does not
-        depend on an existing Hub membership resource.
+        Initializes the Hub in this project, which includes
+        creating the default Hub Service Account and the Hub
+        Workload Identity Pool. Initialization is optional, and
+        happens automatically when the first Membership is
+        created.
+        InitializeHub should be called when the first Membership
+        cannot be registered without these resources. A common
+        example is granting the Hub Service Account access to
+        another project, which requires the account to exist
+        first.
 
         Returns:
-            Callable[[~.ValidateExclusivityRequest],
-                    ~.ValidateExclusivityResponse]:
+            Callable[[~.InitializeHubRequest],
+                    ~.InitializeHubResponse]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -428,57 +433,13 @@ class GkeHubMembershipServiceGrpcTransport(GkeHubMembershipServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "validate_exclusivity" not in self._stubs:
-            self._stubs["validate_exclusivity"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/ValidateExclusivity",
-                request_serializer=membership.ValidateExclusivityRequest.serialize,
-                response_deserializer=membership.ValidateExclusivityResponse.deserialize,
+        if "initialize_hub" not in self._stubs:
+            self._stubs["initialize_hub"] = self.grpc_channel.unary_unary(
+                "/google.cloud.gkehub.v1alpha2.GkeHub/InitializeHub",
+                request_serializer=membership.InitializeHubRequest.serialize,
+                response_deserializer=membership.InitializeHubResponse.deserialize,
             )
-        return self._stubs["validate_exclusivity"]
-
-    @property
-    def generate_exclusivity_manifest(
-        self,
-    ) -> Callable[
-        [membership.GenerateExclusivityManifestRequest],
-        membership.GenerateExclusivityManifestResponse,
-    ]:
-        r"""Return a callable for the generate exclusivity manifest method over gRPC.
-
-        GenerateExclusivityManifest generates the manifests
-        to update the exclusivity artifacts in the cluster if
-        needed.
-        Exclusivity artifacts include the Membership custom
-        resource definition (CRD) and the singleton Membership
-        custom resource (CR). Combined with ValidateExclusivity,
-        exclusivity artifacts guarantee that a Kubernetes
-        cluster is only registered to a single GKE Hub.
-
-        The Membership CRD is versioned, and may require
-        conversion when the GKE Hub API server begins serving a
-        newer version of the CRD and corresponding CR. The
-        response will be the converted CRD and CR if there are
-        any differences between the versions.
-
-        Returns:
-            Callable[[~.GenerateExclusivityManifestRequest],
-                    ~.GenerateExclusivityManifestResponse]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "generate_exclusivity_manifest" not in self._stubs:
-            self._stubs[
-                "generate_exclusivity_manifest"
-            ] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/GenerateExclusivityManifest",
-                request_serializer=membership.GenerateExclusivityManifestRequest.serialize,
-                response_deserializer=membership.GenerateExclusivityManifestResponse.deserialize,
-            )
-        return self._stubs["generate_exclusivity_manifest"]
+        return self._stubs["initialize_hub"]
 
 
-__all__ = ("GkeHubMembershipServiceGrpcTransport",)
+__all__ = ("GkeHubGrpcTransport",)

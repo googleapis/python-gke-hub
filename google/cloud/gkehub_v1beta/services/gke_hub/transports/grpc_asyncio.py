@@ -26,18 +26,30 @@ import packaging.version
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
-from google.cloud.gkehub_v1beta1.types import membership
+from google.cloud.gkehub_v1beta.types import feature
+from google.cloud.gkehub_v1beta.types import service
 from google.longrunning import operations_pb2  # type: ignore
-from .base import GkeHubMembershipServiceTransport, DEFAULT_CLIENT_INFO
-from .grpc import GkeHubMembershipServiceGrpcTransport
+from .base import GkeHubTransport, DEFAULT_CLIENT_INFO
+from .grpc import GkeHubGrpcTransport
 
 
-class GkeHubMembershipServiceGrpcAsyncIOTransport(GkeHubMembershipServiceTransport):
-    """gRPC AsyncIO backend transport for GkeHubMembershipService.
+class GkeHubGrpcAsyncIOTransport(GkeHubTransport):
+    """gRPC AsyncIO backend transport for GkeHub.
 
-    GKE Hub CRUD API for the Membership resource.
-    The Membership service is currently only available in the global
-    location.
+    The GKE Hub service handles the registration of many Kubernetes
+    clusters to Google Cloud, and the management of multi-cluster
+    features over those clusters.
+
+    The GKE Hub service operates on the following resources:
+
+    -  [Membership][google.cloud.gkehub.v1beta.Membership]
+    -  [Feature][google.cloud.gkehub.v1beta.Feature]
+
+    GKE Hub is currently only available in the global region.
+
+    **Membership management may be non-trivial:** it is recommended to
+    use one of the Google-provided client libraries or tools where
+    possible when working with Membership resources.
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -250,19 +262,18 @@ class GkeHubMembershipServiceGrpcAsyncIOTransport(GkeHubMembershipServiceTranspo
         return self._operations_client
 
     @property
-    def list_memberships(
+    def list_features(
         self,
     ) -> Callable[
-        [membership.ListMembershipsRequest],
-        Awaitable[membership.ListMembershipsResponse],
+        [service.ListFeaturesRequest], Awaitable[service.ListFeaturesResponse]
     ]:
-        r"""Return a callable for the list memberships method over gRPC.
+        r"""Return a callable for the list features method over gRPC.
 
-        Lists Memberships in a given project and location.
+        Lists Features in a given project and location.
 
         Returns:
-            Callable[[~.ListMembershipsRequest],
-                    Awaitable[~.ListMembershipsResponse]]:
+            Callable[[~.ListFeaturesRequest],
+                    Awaitable[~.ListFeaturesResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -270,25 +281,25 @@ class GkeHubMembershipServiceGrpcAsyncIOTransport(GkeHubMembershipServiceTranspo
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_memberships" not in self._stubs:
-            self._stubs["list_memberships"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/ListMemberships",
-                request_serializer=membership.ListMembershipsRequest.serialize,
-                response_deserializer=membership.ListMembershipsResponse.deserialize,
+        if "list_features" not in self._stubs:
+            self._stubs["list_features"] = self.grpc_channel.unary_unary(
+                "/google.cloud.gkehub.v1beta.GkeHub/ListFeatures",
+                request_serializer=service.ListFeaturesRequest.serialize,
+                response_deserializer=service.ListFeaturesResponse.deserialize,
             )
-        return self._stubs["list_memberships"]
+        return self._stubs["list_features"]
 
     @property
-    def get_membership(
+    def get_feature(
         self,
-    ) -> Callable[[membership.GetMembershipRequest], Awaitable[membership.Membership]]:
-        r"""Return a callable for the get membership method over gRPC.
+    ) -> Callable[[service.GetFeatureRequest], Awaitable[feature.Feature]]:
+        r"""Return a callable for the get feature method over gRPC.
 
-        Gets the details of a Membership.
+        Gets details of a single Feature.
 
         Returns:
-            Callable[[~.GetMembershipRequest],
-                    Awaitable[~.Membership]]:
+            Callable[[~.GetFeatureRequest],
+                    Awaitable[~.Feature]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -296,26 +307,24 @@ class GkeHubMembershipServiceGrpcAsyncIOTransport(GkeHubMembershipServiceTranspo
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_membership" not in self._stubs:
-            self._stubs["get_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/GetMembership",
-                request_serializer=membership.GetMembershipRequest.serialize,
-                response_deserializer=membership.Membership.deserialize,
+        if "get_feature" not in self._stubs:
+            self._stubs["get_feature"] = self.grpc_channel.unary_unary(
+                "/google.cloud.gkehub.v1beta.GkeHub/GetFeature",
+                request_serializer=service.GetFeatureRequest.serialize,
+                response_deserializer=feature.Feature.deserialize,
             )
-        return self._stubs["get_membership"]
+        return self._stubs["get_feature"]
 
     @property
-    def create_membership(
+    def create_feature(
         self,
-    ) -> Callable[
-        [membership.CreateMembershipRequest], Awaitable[operations_pb2.Operation]
-    ]:
-        r"""Return a callable for the create membership method over gRPC.
+    ) -> Callable[[service.CreateFeatureRequest], Awaitable[operations_pb2.Operation]]:
+        r"""Return a callable for the create feature method over gRPC.
 
-        Adds a new Membership.
+        Adds a new Feature.
 
         Returns:
-            Callable[[~.CreateMembershipRequest],
+            Callable[[~.CreateFeatureRequest],
                     Awaitable[~.Operation]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -324,26 +333,24 @@ class GkeHubMembershipServiceGrpcAsyncIOTransport(GkeHubMembershipServiceTranspo
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_membership" not in self._stubs:
-            self._stubs["create_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/CreateMembership",
-                request_serializer=membership.CreateMembershipRequest.serialize,
+        if "create_feature" not in self._stubs:
+            self._stubs["create_feature"] = self.grpc_channel.unary_unary(
+                "/google.cloud.gkehub.v1beta.GkeHub/CreateFeature",
+                request_serializer=service.CreateFeatureRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
-        return self._stubs["create_membership"]
+        return self._stubs["create_feature"]
 
     @property
-    def delete_membership(
+    def delete_feature(
         self,
-    ) -> Callable[
-        [membership.DeleteMembershipRequest], Awaitable[operations_pb2.Operation]
-    ]:
-        r"""Return a callable for the delete membership method over gRPC.
+    ) -> Callable[[service.DeleteFeatureRequest], Awaitable[operations_pb2.Operation]]:
+        r"""Return a callable for the delete feature method over gRPC.
 
-        Removes a Membership.
+        Removes a Feature.
 
         Returns:
-            Callable[[~.DeleteMembershipRequest],
+            Callable[[~.DeleteFeatureRequest],
                     Awaitable[~.Operation]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -352,26 +359,24 @@ class GkeHubMembershipServiceGrpcAsyncIOTransport(GkeHubMembershipServiceTranspo
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_membership" not in self._stubs:
-            self._stubs["delete_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/DeleteMembership",
-                request_serializer=membership.DeleteMembershipRequest.serialize,
+        if "delete_feature" not in self._stubs:
+            self._stubs["delete_feature"] = self.grpc_channel.unary_unary(
+                "/google.cloud.gkehub.v1beta.GkeHub/DeleteFeature",
+                request_serializer=service.DeleteFeatureRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
-        return self._stubs["delete_membership"]
+        return self._stubs["delete_feature"]
 
     @property
-    def update_membership(
+    def update_feature(
         self,
-    ) -> Callable[
-        [membership.UpdateMembershipRequest], Awaitable[operations_pb2.Operation]
-    ]:
-        r"""Return a callable for the update membership method over gRPC.
+    ) -> Callable[[service.UpdateFeatureRequest], Awaitable[operations_pb2.Operation]]:
+        r"""Return a callable for the update feature method over gRPC.
 
-        Updates an existing Membership.
+        Updates an existing Feature.
 
         Returns:
-            Callable[[~.UpdateMembershipRequest],
+            Callable[[~.UpdateFeatureRequest],
                     Awaitable[~.Operation]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -380,118 +385,13 @@ class GkeHubMembershipServiceGrpcAsyncIOTransport(GkeHubMembershipServiceTranspo
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_membership" not in self._stubs:
-            self._stubs["update_membership"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/UpdateMembership",
-                request_serializer=membership.UpdateMembershipRequest.serialize,
+        if "update_feature" not in self._stubs:
+            self._stubs["update_feature"] = self.grpc_channel.unary_unary(
+                "/google.cloud.gkehub.v1beta.GkeHub/UpdateFeature",
+                request_serializer=service.UpdateFeatureRequest.serialize,
                 response_deserializer=operations_pb2.Operation.FromString,
             )
-        return self._stubs["update_membership"]
-
-    @property
-    def generate_connect_manifest(
-        self,
-    ) -> Callable[
-        [membership.GenerateConnectManifestRequest],
-        Awaitable[membership.GenerateConnectManifestResponse],
-    ]:
-        r"""Return a callable for the generate connect manifest method over gRPC.
-
-        Generates the manifest for deployment of the GKE
-        connect agent.
-
-        Returns:
-            Callable[[~.GenerateConnectManifestRequest],
-                    Awaitable[~.GenerateConnectManifestResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "generate_connect_manifest" not in self._stubs:
-            self._stubs["generate_connect_manifest"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/GenerateConnectManifest",
-                request_serializer=membership.GenerateConnectManifestRequest.serialize,
-                response_deserializer=membership.GenerateConnectManifestResponse.deserialize,
-            )
-        return self._stubs["generate_connect_manifest"]
-
-    @property
-    def validate_exclusivity(
-        self,
-    ) -> Callable[
-        [membership.ValidateExclusivityRequest],
-        Awaitable[membership.ValidateExclusivityResponse],
-    ]:
-        r"""Return a callable for the validate exclusivity method over gRPC.
-
-        ValidateExclusivity validates the state of
-        exclusivity in the cluster. The validation does not
-        depend on an existing Hub membership resource.
-
-        Returns:
-            Callable[[~.ValidateExclusivityRequest],
-                    Awaitable[~.ValidateExclusivityResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "validate_exclusivity" not in self._stubs:
-            self._stubs["validate_exclusivity"] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/ValidateExclusivity",
-                request_serializer=membership.ValidateExclusivityRequest.serialize,
-                response_deserializer=membership.ValidateExclusivityResponse.deserialize,
-            )
-        return self._stubs["validate_exclusivity"]
-
-    @property
-    def generate_exclusivity_manifest(
-        self,
-    ) -> Callable[
-        [membership.GenerateExclusivityManifestRequest],
-        Awaitable[membership.GenerateExclusivityManifestResponse],
-    ]:
-        r"""Return a callable for the generate exclusivity manifest method over gRPC.
-
-        GenerateExclusivityManifest generates the manifests
-        to update the exclusivity artifacts in the cluster if
-        needed.
-        Exclusivity artifacts include the Membership custom
-        resource definition (CRD) and the singleton Membership
-        custom resource (CR). Combined with ValidateExclusivity,
-        exclusivity artifacts guarantee that a Kubernetes
-        cluster is only registered to a single GKE Hub.
-
-        The Membership CRD is versioned, and may require
-        conversion when the GKE Hub API server begins serving a
-        newer version of the CRD and corresponding CR. The
-        response will be the converted CRD and CR if there are
-        any differences between the versions.
-
-        Returns:
-            Callable[[~.GenerateExclusivityManifestRequest],
-                    Awaitable[~.GenerateExclusivityManifestResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if "generate_exclusivity_manifest" not in self._stubs:
-            self._stubs[
-                "generate_exclusivity_manifest"
-            ] = self.grpc_channel.unary_unary(
-                "/google.cloud.gkehub.v1beta1.GkeHubMembershipService/GenerateExclusivityManifest",
-                request_serializer=membership.GenerateExclusivityManifestRequest.serialize,
-                response_deserializer=membership.GenerateExclusivityManifestResponse.deserialize,
-            )
-        return self._stubs["generate_exclusivity_manifest"]
+        return self._stubs["update_feature"]
 
 
-__all__ = ("GkeHubMembershipServiceGrpcAsyncIOTransport",)
+__all__ = ("GkeHubGrpcAsyncIOTransport",)
