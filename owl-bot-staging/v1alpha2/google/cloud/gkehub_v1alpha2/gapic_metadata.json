@@ -1,0 +1,93 @@
+ {
+  "comment": "This file maps proto services/RPCs to the corresponding library clients/methods",
+  "language": "python",
+  "libraryPackage": "google.cloud.gkehub_v1alpha2",
+  "protoPackage": "google.cloud.gkehub.v1alpha2",
+  "schema": "1.0",
+  "services": {
+    "GkeHub": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "GkeHubClient",
+          "rpcs": {
+            "CreateMembership": {
+              "methods": [
+                "create_membership"
+              ]
+            },
+            "DeleteMembership": {
+              "methods": [
+                "delete_membership"
+              ]
+            },
+            "GenerateConnectManifest": {
+              "methods": [
+                "generate_connect_manifest"
+              ]
+            },
+            "GetMembership": {
+              "methods": [
+                "get_membership"
+              ]
+            },
+            "InitializeHub": {
+              "methods": [
+                "initialize_hub"
+              ]
+            },
+            "ListMemberships": {
+              "methods": [
+                "list_memberships"
+              ]
+            },
+            "UpdateMembership": {
+              "methods": [
+                "update_membership"
+              ]
+            }
+          }
+        },
+        "grpc-async": {
+          "libraryClient": "GkeHubAsyncClient",
+          "rpcs": {
+            "CreateMembership": {
+              "methods": [
+                "create_membership"
+              ]
+            },
+            "DeleteMembership": {
+              "methods": [
+                "delete_membership"
+              ]
+            },
+            "GenerateConnectManifest": {
+              "methods": [
+                "generate_connect_manifest"
+              ]
+            },
+            "GetMembership": {
+              "methods": [
+                "get_membership"
+              ]
+            },
+            "InitializeHub": {
+              "methods": [
+                "initialize_hub"
+              ]
+            },
+            "ListMemberships": {
+              "methods": [
+                "list_memberships"
+              ]
+            },
+            "UpdateMembership": {
+              "methods": [
+                "update_membership"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
