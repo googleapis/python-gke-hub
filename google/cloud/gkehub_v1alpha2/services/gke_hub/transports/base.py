@@ -27,12 +27,12 @@ from google.api_core import operations_v1  # type: ignore
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.cloud.gkehub_v1beta1.types import membership
+from google.cloud.gkehub_v1alpha2.types import membership
 from google.longrunning import operations_pb2  # type: ignore
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution("google-cloud-gke-hub",).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-gkehub",).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
@@ -47,8 +47,8 @@ except AttributeError:
         _GOOGLE_AUTH_VERSION = None
 
 
-class GkeHubMembershipServiceTransport(abc.ABC):
-    """Abstract transport class for GkeHubMembershipService."""
+class GkeHubTransport(abc.ABC):
+    """Abstract transport class for GkeHub."""
 
     AUTH_SCOPES = ("https://www.googleapis.com/auth/cloud-platform",)
 
@@ -174,15 +174,8 @@ class GkeHubMembershipServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.validate_exclusivity: gapic_v1.method.wrap_method(
-                self.validate_exclusivity,
-                default_timeout=None,
-                client_info=client_info,
-            ),
-            self.generate_exclusivity_manifest: gapic_v1.method.wrap_method(
-                self.generate_exclusivity_manifest,
-                default_timeout=None,
-                client_info=client_info,
+            self.initialize_hub: gapic_v1.method.wrap_method(
+                self.initialize_hub, default_timeout=None, client_info=client_info,
             ),
         }
 
@@ -252,28 +245,16 @@ class GkeHubMembershipServiceTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def validate_exclusivity(
+    def initialize_hub(
         self,
     ) -> Callable[
-        [membership.ValidateExclusivityRequest],
+        [membership.InitializeHubRequest],
         Union[
-            membership.ValidateExclusivityResponse,
-            Awaitable[membership.ValidateExclusivityResponse],
-        ],
-    ]:
-        raise NotImplementedError()
-
-    @property
-    def generate_exclusivity_manifest(
-        self,
-    ) -> Callable[
-        [membership.GenerateExclusivityManifestRequest],
-        Union[
-            membership.GenerateExclusivityManifestResponse,
-            Awaitable[membership.GenerateExclusivityManifestResponse],
+            membership.InitializeHubResponse,
+            Awaitable[membership.InitializeHubResponse],
         ],
     ]:
         raise NotImplementedError()
 
 
-__all__ = ("GkeHubMembershipServiceTransport",)
+__all__ = ("GkeHubTransport",)
