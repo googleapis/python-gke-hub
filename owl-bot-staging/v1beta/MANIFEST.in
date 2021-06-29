@@ -1,0 +1,2 @@
+recursive-include google/cloud/gkehub/multiclusteringress *.py
+recursive-include google/cloud/gkehub/multiclusteringress_v1beta *.py
