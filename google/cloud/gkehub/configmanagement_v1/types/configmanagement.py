@@ -501,6 +501,7 @@ class GroupVersionKind(proto.Message):
 
 
 class PolicyControllerState(proto.Message):
+    r"""State for PolicyControllerState.
 
     Attributes:
         version (google.cloud.gkehub.configmanagement_v1.types.PolicyControllerVersion):
