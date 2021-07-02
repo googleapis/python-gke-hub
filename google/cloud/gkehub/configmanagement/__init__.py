@@ -15,80 +15,60 @@
 #
 
 
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
-    BinauthzConfig,
-)
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
-    BinauthzState,
-)
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
-    BinauthzVersion,
-)
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
-    ConfigSync,
-)
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import ConfigSync
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     ConfigSyncDeploymentState,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     ConfigSyncState,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     ConfigSyncVersion,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
-    ErrorResource,
-)
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import ErrorResource
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     GatekeeperDeploymentState,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import GitConfig
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import GitConfig
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     GroupVersionKind,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     HierarchyControllerConfig,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     HierarchyControllerDeploymentState,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     HierarchyControllerState,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     HierarchyControllerVersion,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
-    InstallError,
-)
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import InstallError
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     MembershipSpec,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     MembershipState,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
-    OperatorState,
-)
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import OperatorState
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     PolicyController,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     PolicyControllerState,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     PolicyControllerVersion,
 )
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import SyncError
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import SyncState
-from google.cloud.gkehub.configmanagement_v1beta.types.configmanagement import (
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import SyncError
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import SyncState
+from google.cloud.gkehub.configmanagement_v1.types.configmanagement import (
     DeploymentState,
 )
 
 __all__ = (
-    "BinauthzConfig",
-    "BinauthzState",
-    "BinauthzVersion",
     "ConfigSync",
     "ConfigSyncDeploymentState",
     "ConfigSyncState",
