@@ -83,7 +83,7 @@ for library in s.get_staging_dirs(default_version):
         """the GKE cluster. For example:
             //container.googleapis.com/projects/my-"""
     )
-    s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst"])
+    s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst","google/cloud/gkehub/__init__.py"])
 
 s.remove_staging_dirs()
 
