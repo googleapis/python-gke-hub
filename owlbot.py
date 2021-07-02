@@ -30,11 +30,23 @@ for library in s.get_staging_dirs(default_version):
       "multiclusteringress",
     ]
 
+    # rename google.cloud.gkehub.vX to google.cloud.gkehub_vX
+    s.replace(
+      [
+            library  / f"google/cloud/gkehub_{library.name}/**/*.py",
+            library  / f"tests/unit/gapic/gkehub_{library.name}/**/*.py",
+      ],
+      f"google.cloud.gkehub.{library.name}",
+      f"google.cloud.gkehub_{library.name}",
+    )
+
+    # rename dependencies google.cloud.gkehub.dep.vX to google.cloud.gkehub.dep_vX
     for dep in dependencies:
         s.replace(
           [
             library  / f"google/cloud/gkehub_{library.name}/**/*.py",
             library  / f"tests/unit/gapic/gkehub_{library.name}/**/*.py",
+            library  / f"google/cloud/gkehub/{dep}_{library.name}/**/*.py",
           ],
           f"from google.cloud.gkehub.{dep}.{library.name} import",
           f"import google.cloud.gkehub.{dep}_{library.name} as"
@@ -42,6 +54,8 @@ for library in s.get_staging_dirs(default_version):
 
         s.replace(
           [
+            library  / f"google/cloud/gkehub_{library.name}/**/*.py",
+            library  / f"tests/unit/gapic/gkehub_{library.name}/**/*.py",
             library  / f"google/cloud/gkehub/{dep}_{library.name}/**/*.py",
           ],
           f"google.cloud.gkehub.{dep}.{library.name}",
