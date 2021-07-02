@@ -34,8 +34,8 @@ from google.api_core import operation_async  # type: ignore
 from google.api_core import operations_v1
 from google.auth import credentials as ga_credentials
 from google.auth.exceptions import MutualTLSChannelError
-from google.cloud.gkehub.configmanagement.v1 import configmanagement_pb2  # type: ignore
-from google.cloud.gkehub.multiclusteringress.v1 import multiclusteringress_pb2  # type: ignore
+import google.cloud.gkehub.configmanagement_v1 as configmanagement_pb2  # type: ignore
+import google.cloud.gkehub.multiclusteringress_v1 as multiclusteringress_pb2  # type: ignore
 from google.cloud.gkehub_v1.services.gke_hub import GkeHubAsyncClient
 from google.cloud.gkehub_v1.services.gke_hub import GkeHubClient
 from google.cloud.gkehub_v1.services.gke_hub import pagers
@@ -125,7 +125,25 @@ def test_gke_hub_client_service_account_always_use_jwt(client_class):
     ) as use_jwt:
         creds = service_account.Credentials(None, None, None)
         client = client_class(credentials=creds)
-        use_jwt.assert_called_with(True)
+        use_jwt.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    "transport_class,transport_name",
+    [
+        (transports.GkeHubGrpcTransport, "grpc"),
+        (transports.GkeHubGrpcAsyncIOTransport, "grpc_asyncio"),
+    ],
+)
+def test_gke_hub_client_service_account_always_use_jwt_true(
+    transport_class, transport_name
+):
+    with mock.patch.object(
+        service_account.Credentials, "with_always_use_jwt_access", create=True
+    ) as use_jwt:
+        creds = service_account.Credentials(None, None, None)
+        transport = transport_class(credentials=creds, always_use_jwt_access=True)
+        use_jwt.assert_called_once_with(True)
 
 
 @pytest.mark.parametrize("client_class", [GkeHubClient, GkeHubAsyncClient,])

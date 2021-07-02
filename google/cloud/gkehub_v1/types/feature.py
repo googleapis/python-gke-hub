@@ -15,8 +15,8 @@
 #
 import proto  # type: ignore
 
-from google.cloud.gkehub.configmanagement.v1 import configmanagement_pb2  # type: ignore
-from google.cloud.gkehub.multiclusteringress.v1 import multiclusteringress_pb2  # type: ignore
+import google.cloud.gkehub.configmanagement_v1 as configmanagement_pb2  # type: ignore
+import google.cloud.gkehub.multiclusteringress_v1 as multiclusteringress_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 
 
@@ -58,7 +58,7 @@ class Feature(proto.Message):
             field may be unused.
             The keys indicate which Membership the
             configuration is for, in the form:
-                projects/{p}/locations/{l}/memberships/{m}
+            `projects/{p}/locations/{l}/memberships/{m}`
             Where {p} is the project, {l} is a valid
             location and {m} is a valid Membership in this
             project at that location. {p} WILL match the
@@ -81,7 +81,7 @@ class Feature(proto.Message):
             Membership status, this field may be unused.
             The keys indicate which Membership the state is
             for, in the form:
-                projects/{p}/locations/{l}/memberships/{m}
+            `projects/{p}/locations/{l}/memberships/{m}`
             Where {p} is the project number, {l} is a valid
             location and {m} is a valid Membership in this
             project at that location. {p} MUST match the
@@ -172,7 +172,8 @@ class FeatureState(proto.Message):
 
 
 class CommonFeatureSpec(proto.Message):
-    r"""CommonFeatureSpec contains Hub-wide configuration information
+    r"""CommonFeatureSpec contains Hub-wide configuration informatio.
+
     Attributes:
         multiclusteringress (google.cloud.gkehub.multiclusteringress.v1.multiclusteringress_pb2.FeatureSpec):
             Multicluster Ingress-specific spec.

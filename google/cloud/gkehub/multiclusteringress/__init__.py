@@ -15,14 +15,8 @@
 #
 
 
-from google.cloud.gkehub.multiclusteringress_v1beta.types.multiclusteringress import (
+from google.cloud.gkehub.multiclusteringress_v1.types.multiclusteringress import (
     FeatureSpec,
 )
-from google.cloud.gkehub.multiclusteringress_v1beta.types.multiclusteringress import (
-    Billing,
-)
 
-__all__ = (
-    "FeatureSpec",
-    "Billing",
-)
+__all__ = ("FeatureSpec",)

@@ -14,69 +14,71 @@
 # limitations under the License.
 #
 
-from google.cloud.gkehub_v1beta1.services.gke_hub_membership_service.client import (
-    GkeHubMembershipServiceClient,
-)
-from google.cloud.gkehub_v1beta1.services.gke_hub_membership_service.async_client import (
-    GkeHubMembershipServiceAsyncClient,
-)
+from google.cloud.gkehub_v1.services.gke_hub.client import GkeHubClient
+from google.cloud.gkehub_v1.services.gke_hub.async_client import GkeHubAsyncClient
 
-from google.cloud.gkehub_v1beta1.types.membership import Authority
-from google.cloud.gkehub_v1beta1.types.membership import ConnectAgent
-from google.cloud.gkehub_v1beta1.types.membership import ConnectAgentResource
-from google.cloud.gkehub_v1beta1.types.membership import CreateMembershipRequest
-from google.cloud.gkehub_v1beta1.types.membership import DeleteMembershipRequest
-from google.cloud.gkehub_v1beta1.types.membership import GenerateConnectManifestRequest
-from google.cloud.gkehub_v1beta1.types.membership import GenerateConnectManifestResponse
-from google.cloud.gkehub_v1beta1.types.membership import (
-    GenerateExclusivityManifestRequest,
-)
-from google.cloud.gkehub_v1beta1.types.membership import (
-    GenerateExclusivityManifestResponse,
-)
-from google.cloud.gkehub_v1beta1.types.membership import GetMembershipRequest
-from google.cloud.gkehub_v1beta1.types.membership import GkeCluster
-from google.cloud.gkehub_v1beta1.types.membership import KubernetesMetadata
-from google.cloud.gkehub_v1beta1.types.membership import KubernetesResource
-from google.cloud.gkehub_v1beta1.types.membership import ListMembershipsRequest
-from google.cloud.gkehub_v1beta1.types.membership import ListMembershipsResponse
-from google.cloud.gkehub_v1beta1.types.membership import Membership
-from google.cloud.gkehub_v1beta1.types.membership import MembershipEndpoint
-from google.cloud.gkehub_v1beta1.types.membership import MembershipState
-from google.cloud.gkehub_v1beta1.types.membership import OperationMetadata
-from google.cloud.gkehub_v1beta1.types.membership import ResourceManifest
-from google.cloud.gkehub_v1beta1.types.membership import ResourceOptions
-from google.cloud.gkehub_v1beta1.types.membership import TypeMeta
-from google.cloud.gkehub_v1beta1.types.membership import UpdateMembershipRequest
-from google.cloud.gkehub_v1beta1.types.membership import ValidateExclusivityRequest
-from google.cloud.gkehub_v1beta1.types.membership import ValidateExclusivityResponse
+from google.cloud.gkehub_v1.types.feature import CommonFeatureSpec
+from google.cloud.gkehub_v1.types.feature import CommonFeatureState
+from google.cloud.gkehub_v1.types.feature import Feature
+from google.cloud.gkehub_v1.types.feature import FeatureResourceState
+from google.cloud.gkehub_v1.types.feature import FeatureState
+from google.cloud.gkehub_v1.types.feature import MembershipFeatureSpec
+from google.cloud.gkehub_v1.types.feature import MembershipFeatureState
+from google.cloud.gkehub_v1.types.membership import Authority
+from google.cloud.gkehub_v1.types.membership import GkeCluster
+from google.cloud.gkehub_v1.types.membership import KubernetesMetadata
+from google.cloud.gkehub_v1.types.membership import Membership
+from google.cloud.gkehub_v1.types.membership import MembershipEndpoint
+from google.cloud.gkehub_v1.types.membership import MembershipState
+from google.cloud.gkehub_v1.types.service import ConnectAgentResource
+from google.cloud.gkehub_v1.types.service import CreateFeatureRequest
+from google.cloud.gkehub_v1.types.service import CreateMembershipRequest
+from google.cloud.gkehub_v1.types.service import DeleteFeatureRequest
+from google.cloud.gkehub_v1.types.service import DeleteMembershipRequest
+from google.cloud.gkehub_v1.types.service import GenerateConnectManifestRequest
+from google.cloud.gkehub_v1.types.service import GenerateConnectManifestResponse
+from google.cloud.gkehub_v1.types.service import GetFeatureRequest
+from google.cloud.gkehub_v1.types.service import GetMembershipRequest
+from google.cloud.gkehub_v1.types.service import ListFeaturesRequest
+from google.cloud.gkehub_v1.types.service import ListFeaturesResponse
+from google.cloud.gkehub_v1.types.service import ListMembershipsRequest
+from google.cloud.gkehub_v1.types.service import ListMembershipsResponse
+from google.cloud.gkehub_v1.types.service import OperationMetadata
+from google.cloud.gkehub_v1.types.service import TypeMeta
+from google.cloud.gkehub_v1.types.service import UpdateFeatureRequest
+from google.cloud.gkehub_v1.types.service import UpdateMembershipRequest
 
 __all__ = (
-    "GkeHubMembershipServiceClient",
-    "GkeHubMembershipServiceAsyncClient",
+    "GkeHubClient",
+    "GkeHubAsyncClient",
+    "CommonFeatureSpec",
+    "CommonFeatureState",
+    "Feature",
+    "FeatureResourceState",
+    "FeatureState",
+    "MembershipFeatureSpec",
+    "MembershipFeatureState",
     "Authority",
-    "ConnectAgent",
-    "ConnectAgentResource",
-    "CreateMembershipRequest",
-    "DeleteMembershipRequest",
-    "GenerateConnectManifestRequest",
-    "GenerateConnectManifestResponse",
-    "GenerateExclusivityManifestRequest",
-    "GenerateExclusivityManifestResponse",
-    "GetMembershipRequest",
     "GkeCluster",
     "KubernetesMetadata",
-    "KubernetesResource",
-    "ListMembershipsRequest",
-    "ListMembershipsResponse",
     "Membership",
     "MembershipEndpoint",
     "MembershipState",
+    "ConnectAgentResource",
+    "CreateFeatureRequest",
+    "CreateMembershipRequest",
+    "DeleteFeatureRequest",
+    "DeleteMembershipRequest",
+    "GenerateConnectManifestRequest",
+    "GenerateConnectManifestResponse",
+    "GetFeatureRequest",
+    "GetMembershipRequest",
+    "ListFeaturesRequest",
+    "ListFeaturesResponse",
+    "ListMembershipsRequest",
+    "ListMembershipsResponse",
     "OperationMetadata",
-    "ResourceManifest",
-    "ResourceOptions",
     "TypeMeta",
+    "UpdateFeatureRequest",
     "UpdateMembershipRequest",
-    "ValidateExclusivityRequest",
-    "ValidateExclusivityResponse",
 )
