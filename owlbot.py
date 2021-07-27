@@ -64,7 +64,7 @@ for library in s.get_staging_dirs(default_version):
             //container.googleapis.com/projects/my-"""
     )
 
-    s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst"])
+    s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst", "google/cloud/gkehub/configmanagement", "google/cloud/gkehub/multiclusteringress"])
 
 s.remove_staging_dirs()
 
