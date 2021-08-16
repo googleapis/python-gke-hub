@@ -30,16 +30,26 @@ for library in s.get_staging_dirs(default_version):
       "multiclusteringress",
     ]
 
-    # rename dependencies google.cloud.gkehub.dep.vX to google.cloud.gkehub.dep_vX
     for dep in dependencies:
+        # Copy v1 dependencies from google/cloud/gkehub to google/cloud/gkehub_vX
+        s.copy(library / f"google/cloud/gkehub/{dep}_v1", library / f"google/cloud/gkehub_{library.name}/{dep}_v1")
+        s.copy(library / f"docs/{dep}_v1", library / f"docs/gkehub_{library.name}/{dep}_v1")
+
+        # Adjust docs based on dependency locations
+        s.replace(
+          library  / f"docs/{dep}_v1",
+          f"google.cloud.gkehub_{library.name}.{dep}_v1.types",
+          f"google.cloud.gkehub_{library.name}.{dep}_v1.types",
+        )
+
+        # Rename v1 dependency imports from google.cloud.gkehub.dep.v1 to google.cloud.gkehub_vX.dep_v1
         s.replace(
           [
             library  / f"google/cloud/gkehub_{library.name}/**/*.py",
             library  / f"tests/unit/gapic/gkehub_{library.name}/**/*.py",
-            library  / f"google/cloud/gkehub/{dep}_{library.name}/**/*.py",
           ],
-          f"from google.cloud.gkehub.{dep}.{library.name} import",
-          f"from google.cloud.gkehub import {dep}_{library.name} as"
+          f"from google.cloud.gkehub.{dep}.v1 import",
+          f"from google.cloud.gkehub_{library.name} import {dep}_v1 as"
         )
 
     # Work around gapic generator bug https://github.com/googleapis/gapic-generator-python/issues/902
@@ -64,7 +74,7 @@ for library in s.get_staging_dirs(default_version):
             //container.googleapis.com/projects/my-"""
     )
 
-    s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst", "google/cloud/gkehub/configmanagement", "google/cloud/gkehub/multiclusteringress"])
+    s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst", "google/cloud/gkehub/configmanagement*", "google/cloud/gkehub/multiclusteringress*"])
 
 s.remove_staging_dirs()
 

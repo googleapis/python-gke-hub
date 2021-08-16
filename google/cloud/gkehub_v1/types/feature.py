@@ -15,8 +15,8 @@
 #
 import proto  # type: ignore
 
-from google.cloud.gkehub import configmanagement_v1 as configmanagement_pb2  # type: ignore
-from google.cloud.gkehub import multiclusteringress_v1 as multiclusteringress_pb2  # type: ignore
+from google.cloud.gkehub_v1 import configmanagement_v1 as configmanagement_pb2  # type: ignore
+from google.cloud.gkehub_v1 import multiclusteringress_v1 as multiclusteringress_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 
 
