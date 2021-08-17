@@ -25,31 +25,33 @@ common = gcp.CommonTemplates()
 default_version = "v1"
 
 for library in s.get_staging_dirs(default_version):
-    dependencies = [
+    submodules = [
       "configmanagement",
       "multiclusteringress",
     ]
 
-    for dep in dependencies:
-        # Copy v1 dependencies from google/cloud/gkehub to google/cloud/gkehub_vX
-        s.copy(library / f"google/cloud/gkehub/{dep}_v1", library / f"google/cloud/gkehub_{library.name}/{dep}_v1")
-        s.copy(library / f"docs/{dep}_v1", library / f"docs/gkehub_{library.name}/{dep}_v1")
+    for submodule in submodules:
+        # Move v1 submodule namespace from google.cloud.gkehub.{submodule}_v1 to google.cloud.gkehub_vX.{submodule}_v1
+        s.move(library / f"google/cloud/gkehub/{submodule}_v1", library / f"google/cloud/gkehub_{library.name}/{submodule}_v1")
 
-        # Adjust docs based on dependency locations
+        # Adjust docs based on new submodule namespace google.cloud.gkehub_vX.{submodule}_v1.types"
         s.replace(
-          library  / f"docs/{dep}_v1",
-          f"google.cloud.gkehub_{library.name}.{dep}_v1.types",
-          f"google.cloud.gkehub_{library.name}.{dep}_v1.types",
+          library  / f"docs/{submodule}_v1/types.rst",
+          f"google.cloud.gkehub.{submodule}_v1.types",
+          f"google.cloud.gkehub_{library.name}.{submodule}_v1.types",
         )
 
-        # Rename v1 dependency imports from google.cloud.gkehub.dep.v1 to google.cloud.gkehub_vX.dep_v1
+        # Move docs to correct location /docs/gkehub_vX/{submodule}_v1
+        s.move(library / f"docs/{submodule}_v1", library / f"docs/gkehub_{library.name}/{submodule}_v1")
+
+        # Rename v1 submodule imports from google.cloud.gkehub.submodule.v1 to google.cloud.gkehub_vX.submodule_v1
         s.replace(
           [
             library  / f"google/cloud/gkehub_{library.name}/**/*.py",
             library  / f"tests/unit/gapic/gkehub_{library.name}/**/*.py",
           ],
-          f"from google.cloud.gkehub.{dep}.v1 import",
-          f"from google.cloud.gkehub_{library.name} import {dep}_v1 as"
+          f"from google.cloud.gkehub.{submodule}.v1 import",
+          f"from google.cloud.gkehub_{library.name} import {submodule}_v1 as"
         )
 
     # Work around gapic generator bug https://github.com/googleapis/gapic-generator-python/issues/902
@@ -74,7 +76,18 @@ for library in s.get_staging_dirs(default_version):
             //container.googleapis.com/projects/my-"""
     )
 
-    s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst", "google/cloud/gkehub/configmanagement*", "google/cloud/gkehub/multiclusteringress*"])
+    excludes=[
+        "setup.py",
+        "README.rst",
+        "docs/index.rst",
+        "docs/configmanagement_v1/**",
+        "docs/multiclusteringress_v1/**",
+        "google/cloud/gkehub/configmanagement/**",
+        "google/cloud/gkehub/configmanagement_v1/**",
+        "google/cloud/gkehub/multiclusteringress/**",
+        "google/cloud/gkehub/multiclusteringress_v1/**"
+    ]
+    s.move(library, excludes=excludes)
 
 s.remove_staging_dirs()
 
