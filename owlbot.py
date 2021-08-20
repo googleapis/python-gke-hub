@@ -50,8 +50,20 @@ for library in s.get_staging_dirs(default_version):
             library  / f"google/cloud/gkehub_{library.name}/**/*.py",
             library  / f"tests/unit/gapic/gkehub_{library.name}/**/*.py",
           ],
-          f"from google.cloud.gkehub.{submodule}.v1 import",
-          f"from google.cloud.gkehub_{library.name} import {submodule}_v1 as"
+          f"from google.cloud.gkehub.{submodule}.v1 import {submodule}_pb2",
+          f"from google.cloud.gkehub_{library.name} import {submodule}_v1"
+        )
+
+        s.replace(
+          library / f"google/cloud/gkehub_{library.name}/types/feature.py",
+          f"google.cloud.gkehub.{submodule}.v1.{submodule}_pb2",
+          f"google.cloud.gkehub_v1.{submodule}_v1"
+        )
+
+        s.replace(
+          library / f"google/cloud/gkehub_{library.name}/types/feature.py",
+          f"{submodule}_pb2",
+          f"{submodule}_v1"
         )
 
     # Work around gapic generator bug https://github.com/googleapis/gapic-generator-python/issues/902
