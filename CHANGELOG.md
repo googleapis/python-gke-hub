@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/googleapis/python-gke-hub/compare/v1.0.0...v1.0.1) (2021-10-07)
+
+
+### Bug Fixes
+
+* improper types in pagers generation ([80c87ba](https://www.github.com/googleapis/python-gke-hub/commit/80c87baf1ce13e9c4377a2fb5d59f0776580758e))
+
 ## [1.0.0](https://www.github.com/googleapis/python-gke-hub/compare/v0.2.2...v1.0.0) (2021-09-29)
 
 
