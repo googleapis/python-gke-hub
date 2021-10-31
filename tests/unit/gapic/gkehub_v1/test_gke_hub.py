@@ -605,7 +605,9 @@ def test_list_memberships_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
 
 
 def test_list_memberships_flattened_error():
@@ -639,7 +641,9 @@ async def test_list_memberships_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -941,7 +945,9 @@ def test_list_features_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
 
 
 def test_list_features_flattened_error():
@@ -975,7 +981,9 @@ async def test_list_features_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -1278,7 +1286,9 @@ def test_get_membership_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 def test_get_membership_flattened_error():
@@ -1312,7 +1322,9 @@ async def test_get_membership_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -1470,7 +1482,9 @@ def test_get_feature_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 def test_get_feature_flattened_error():
@@ -1502,7 +1516,9 @@ async def test_get_feature_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -1684,13 +1700,19 @@ def test_create_membership_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
-        assert args[0].resource == membership.Membership(
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = membership.Membership(
             endpoint=membership.MembershipEndpoint(
                 gke_cluster=membership.GkeCluster(resource_link="resource_link_value")
             )
         )
-        assert args[0].membership_id == "membership_id_value"
+        assert arg == mock_val
+        arg = args[0].membership_id
+        mock_val = "membership_id_value"
+        assert arg == mock_val
 
 
 def test_create_membership_flattened_error():
@@ -1745,13 +1767,19 @@ async def test_create_membership_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
-        assert args[0].resource == membership.Membership(
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = membership.Membership(
             endpoint=membership.MembershipEndpoint(
                 gke_cluster=membership.GkeCluster(resource_link="resource_link_value")
             )
         )
-        assert args[0].membership_id == "membership_id_value"
+        assert arg == mock_val
+        arg = args[0].membership_id
+        mock_val = "membership_id_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -1924,9 +1952,15 @@ def test_create_feature_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
-        assert args[0].resource == feature.Feature(name="name_value")
-        assert args[0].feature_id == "feature_id_value"
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = feature.Feature(name="name_value")
+        assert arg == mock_val
+        arg = args[0].feature_id
+        mock_val = "feature_id_value"
+        assert arg == mock_val
 
 
 def test_create_feature_flattened_error():
@@ -1967,9 +2001,15 @@ async def test_create_feature_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].parent == "parent_value"
-        assert args[0].resource == feature.Feature(name="name_value")
-        assert args[0].feature_id == "feature_id_value"
+        arg = args[0].parent
+        mock_val = "parent_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = feature.Feature(name="name_value")
+        assert arg == mock_val
+        arg = args[0].feature_id
+        mock_val = "feature_id_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -2144,7 +2184,9 @@ def test_delete_membership_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 def test_delete_membership_flattened_error():
@@ -2180,7 +2222,9 @@ async def test_delete_membership_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -2340,7 +2384,9 @@ def test_delete_feature_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 def test_delete_feature_flattened_error():
@@ -2374,7 +2420,9 @@ async def test_delete_feature_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -2556,13 +2604,19 @@ def test_update_membership_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
-        assert args[0].resource == membership.Membership(
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = membership.Membership(
             endpoint=membership.MembershipEndpoint(
                 gke_cluster=membership.GkeCluster(resource_link="resource_link_value")
             )
         )
-        assert args[0].update_mask == field_mask_pb2.FieldMask(paths=["paths_value"])
+        assert arg == mock_val
+        arg = args[0].update_mask
+        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
+        assert arg == mock_val
 
 
 def test_update_membership_flattened_error():
@@ -2617,13 +2671,19 @@ async def test_update_membership_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
-        assert args[0].resource == membership.Membership(
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = membership.Membership(
             endpoint=membership.MembershipEndpoint(
                 gke_cluster=membership.GkeCluster(resource_link="resource_link_value")
             )
         )
-        assert args[0].update_mask == field_mask_pb2.FieldMask(paths=["paths_value"])
+        assert arg == mock_val
+        arg = args[0].update_mask
+        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
@@ -2796,9 +2856,15 @@ def test_update_feature_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
-        assert args[0].resource == feature.Feature(name="name_value")
-        assert args[0].update_mask == field_mask_pb2.FieldMask(paths=["paths_value"])
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = feature.Feature(name="name_value")
+        assert arg == mock_val
+        arg = args[0].update_mask
+        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
+        assert arg == mock_val
 
 
 def test_update_feature_flattened_error():
@@ -2839,9 +2905,15 @@ async def test_update_feature_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0].name == "name_value"
-        assert args[0].resource == feature.Feature(name="name_value")
-        assert args[0].update_mask == field_mask_pb2.FieldMask(paths=["paths_value"])
+        arg = args[0].name
+        mock_val = "name_value"
+        assert arg == mock_val
+        arg = args[0].resource
+        mock_val = feature.Feature(name="name_value")
+        assert arg == mock_val
+        arg = args[0].update_mask
+        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
+        assert arg == mock_val
 
 
 @pytest.mark.asyncio
