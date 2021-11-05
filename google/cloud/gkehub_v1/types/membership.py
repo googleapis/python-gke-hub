@@ -40,6 +40,7 @@ class Membership(proto.Message):
         endpoint (google.cloud.gkehub_v1.types.MembershipEndpoint):
             Optional. Endpoint information to reach this
             member.
+
             This field is a member of `oneof`_ ``type``.
         name (str):
             Output only. The full, unique name of this Membership

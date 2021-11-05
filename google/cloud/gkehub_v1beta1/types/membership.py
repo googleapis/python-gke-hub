@@ -86,6 +86,7 @@ class Membership(proto.Message):
         endpoint (google.cloud.gkehub_v1beta1.types.MembershipEndpoint):
             Optional. Endpoint information to reach this
             member.
+
             This field is a member of `oneof`_ ``type``.
         state (google.cloud.gkehub_v1beta1.types.MembershipState):
             Output only. State of the Membership
@@ -179,14 +180,17 @@ class MembershipEndpoint(proto.Message):
         gke_cluster (google.cloud.gkehub_v1beta1.types.GkeCluster):
             Optional. Specific information for a GKE-on-
             CP cluster.
+
             This field is a member of `oneof`_ ``type``.
         on_prem_cluster (google.cloud.gkehub_v1beta1.types.OnPremCluster):
             Optional. Specific information for a GKE On-
             rem cluster.
+
             This field is a member of `oneof`_ ``type``.
         multi_cloud_cluster (google.cloud.gkehub_v1beta1.types.MultiCloudCluster):
             Optional. Specific information for a GKE
             Multi-Cloud cluster.
+
             This field is a member of `oneof`_ ``type``.
         kubernetes_metadata (google.cloud.gkehub_v1beta1.types.KubernetesMetadata):
             Output only. Useful Kubernetes-specific
@@ -344,7 +348,7 @@ class OnPremCluster(proto.Message):
         resource_link (str):
             Immutable. Self-link of the GCP resource for
             the GKE On-Prem cluster. For example:
-             //gkeonprem.googleapis.com/projects/my-
+            //gkeonprem.googleapis.com/projects/my-
             project/locations/us-west1-a/vmwareClusters/my-
             cluster  //gkeonprem.googleapis.com/projects/my-
             project/locations/us-
@@ -372,7 +376,7 @@ class MultiCloudCluster(proto.Message):
             Immutable. Self-link of the GCP resource for
             the GKE Multi-Cloud cluster. For example:
 
-             //gkemulticloud.googleapis.com/projects/my-
+            //gkemulticloud.googleapis.com/projects/my-
             project/locations/us-west1-a/awsClusters/my-
             cluster
             //gkemulticloud.googleapis.com/projects/my-

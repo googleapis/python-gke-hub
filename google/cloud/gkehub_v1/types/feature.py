@@ -179,6 +179,7 @@ class CommonFeatureSpec(proto.Message):
     Attributes:
         multiclusteringress (google.cloud.gkehub_v1.multiclusteringress_v1.FeatureSpec):
             Multicluster Ingress-specific spec.
+
             This field is a member of `oneof`_ ``feature_spec``.
     """
 
@@ -213,6 +214,7 @@ class MembershipFeatureSpec(proto.Message):
     Attributes:
         configmanagement (google.cloud.gkehub_v1.configmanagement_v1.MembershipSpec):
             Config Management-specific spec.
+
             This field is a member of `oneof`_ ``feature_spec``.
     """
 
@@ -234,6 +236,7 @@ class MembershipFeatureState(proto.Message):
     Attributes:
         configmanagement (google.cloud.gkehub_v1.configmanagement_v1.MembershipState):
             Config Management-specific state.
+
             This field is a member of `oneof`_ ``feature_state``.
         state (google.cloud.gkehub_v1.types.FeatureState):
             The high-level state of this Feature for a
