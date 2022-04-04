@@ -141,6 +141,7 @@ s.replace("google/cloud/gkehub_v1beta1/types/membership.py",
 
 templated_files = common.py_library(cov_level=100, microgenerator=True)
 python.py_samples(skip_readmes=True)
+python.configure_previous_major_version_branches()
 
 # the microgenerator has a good coveragerc file
 excludes = [".coveragerc"]
