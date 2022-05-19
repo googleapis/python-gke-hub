@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -239,9 +239,9 @@ class GkeHubMembershipServiceAsyncClient:
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_list_memberships():
+            async def sample_list_memberships():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.ListMembershipsRequest(
@@ -252,7 +252,7 @@ class GkeHubMembershipServiceAsyncClient:
                 page_result = client.list_memberships(request=request)
 
                 # Handle the response
-                for response in page_result:
+                async for response in page_result:
                     print(response)
 
         Args:
@@ -348,9 +348,9 @@ class GkeHubMembershipServiceAsyncClient:
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_get_membership():
+            async def sample_get_membership():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.GetMembershipRequest(
@@ -358,7 +358,7 @@ class GkeHubMembershipServiceAsyncClient:
                 )
 
                 # Make the request
-                response = client.get_membership(request=request)
+                response = await client.get_membership(request=request)
 
                 # Handle the response
                 print(response)
@@ -445,14 +445,13 @@ class GkeHubMembershipServiceAsyncClient:
         Cloud**. To register other clusters, follow the instructions at
         https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
 
-
         .. code-block:: python
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_create_membership():
+            async def sample_create_membership():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.CreateMembershipRequest(
@@ -465,7 +464,7 @@ class GkeHubMembershipServiceAsyncClient:
 
                 print("Waiting for operation to complete...")
 
-                response = operation.result()
+                response = await operation.result()
 
                 # Handle the response
                 print(response)
@@ -589,14 +588,13 @@ class GkeHubMembershipServiceAsyncClient:
         at
         https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
 
-
         .. code-block:: python
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_delete_membership():
+            async def sample_delete_membership():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.DeleteMembershipRequest(
@@ -608,7 +606,7 @@ class GkeHubMembershipServiceAsyncClient:
 
                 print("Waiting for operation to complete...")
 
-                response = operation.result()
+                response = await operation.result()
 
                 # Handle the response
                 print(response)
@@ -716,9 +714,9 @@ class GkeHubMembershipServiceAsyncClient:
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_update_membership():
+            async def sample_update_membership():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.UpdateMembershipRequest(
@@ -730,7 +728,7 @@ class GkeHubMembershipServiceAsyncClient:
 
                 print("Waiting for operation to complete...")
 
-                response = operation.result()
+                response = await operation.result()
 
                 # Handle the response
                 print(response)
@@ -850,14 +848,13 @@ class GkeHubMembershipServiceAsyncClient:
         **This method is used internally by Google-provided libraries.**
         Most clients should not need to call this method directly.
 
-
         .. code-block:: python
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_generate_connect_manifest():
+            async def sample_generate_connect_manifest():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.GenerateConnectManifestRequest(
@@ -865,7 +862,7 @@ class GkeHubMembershipServiceAsyncClient:
                 )
 
                 # Make the request
-                response = client.generate_connect_manifest(request=request)
+                response = await client.generate_connect_manifest(request=request)
 
                 # Handle the response
                 print(response)
@@ -928,14 +925,13 @@ class GkeHubMembershipServiceAsyncClient:
         exclusivity in the cluster. The validation does not
         depend on an existing Hub membership resource.
 
-
         .. code-block:: python
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_validate_exclusivity():
+            async def sample_validate_exclusivity():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.ValidateExclusivityRequest(
@@ -944,7 +940,7 @@ class GkeHubMembershipServiceAsyncClient:
                 )
 
                 # Make the request
-                response = client.validate_exclusivity(request=request)
+                response = await client.validate_exclusivity(request=request)
 
                 # Handle the response
                 print(response)
@@ -1016,14 +1012,13 @@ class GkeHubMembershipServiceAsyncClient:
         response will be the converted CRD and CR if there are
         any differences between the versions.
 
-
         .. code-block:: python
 
             from google.cloud import gkehub_v1beta1
 
-            def sample_generate_exclusivity_manifest():
+            async def sample_generate_exclusivity_manifest():
                 # Create a client
-                client = gkehub_v1beta1.GkeHubMembershipServiceClient()
+                client = gkehub_v1beta1.GkeHubMembershipServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = gkehub_v1beta1.GenerateExclusivityManifestRequest(
@@ -1031,7 +1026,7 @@ class GkeHubMembershipServiceAsyncClient:
                 )
 
                 # Make the request
-                response = client.generate_exclusivity_manifest(request=request)
+                response = await client.generate_exclusivity_manifest(request=request)
 
                 # Handle the response
                 print(response)
