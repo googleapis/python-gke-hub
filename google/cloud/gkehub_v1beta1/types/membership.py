@@ -477,7 +477,17 @@ class OnPremCluster(proto.Message):
         admin_cluster (bool):
             Immutable. Whether the cluster is an admin
             cluster.
+        cluster_type (google.cloud.gkehub_v1beta1.types.OnPremCluster.ClusterType):
+            Immutable. The on prem cluster's type.
     """
+
+    class ClusterType(proto.Enum):
+        r"""ClusterType describes on prem cluster's type."""
+        CLUSTERTYPE_UNSPECIFIED = 0
+        BOOTSTRAP = 1
+        HYBRID = 2
+        STANDALONE = 3
+        USER = 4
 
     resource_link = proto.Field(
         proto.STRING,
@@ -490,6 +500,11 @@ class OnPremCluster(proto.Message):
     admin_cluster = proto.Field(
         proto.BOOL,
         number=3,
+    )
+    cluster_type = proto.Field(
+        proto.ENUM,
+        number=4,
+        enum=ClusterType,
     )
 
 
