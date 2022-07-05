@@ -2879,7 +2879,6 @@ def test_gke_hub_membership_service_transport_auth_adc(transport_class):
     [
         transports.GkeHubMembershipServiceGrpcTransport,
         transports.GkeHubMembershipServiceGrpcAsyncIOTransport,
-        transports.GkeHubMembershipServiceRestTransport,
     ],
 )
 def test_gke_hub_membership_service_transport_auth_gdch_credentials(transport_class):

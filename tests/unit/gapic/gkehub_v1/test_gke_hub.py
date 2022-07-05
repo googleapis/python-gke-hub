@@ -3901,7 +3901,6 @@ def test_gke_hub_transport_auth_adc(transport_class):
     [
         transports.GkeHubGrpcTransport,
         transports.GkeHubGrpcAsyncIOTransport,
-        transports.GkeHubRestTransport,
     ],
 )
 def test_gke_hub_transport_auth_gdch_credentials(transport_class):
