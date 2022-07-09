@@ -20,13 +20,14 @@ import os
 import setuptools  # type: ignore
 
 name = "google-cloud-gke-hub"
-version = "1.4.2"
+version = "1.4.3"
 description = "GKE Hub API client library"
 release_status = "Development Status :: 5 - Production/Stable"
 url = "https://github.com/googleapis/python-gke-hub"
 dependencies = [
     "google-api-core[grpc] >= 2.8.0, <3.0.0dev",
-    "proto-plus >= 1.15.0",
+    "proto-plus >= 1.15.0, <2.0.0dev",
+    "protobuf >= 3.19.0, <4.0.0dev",
 ]
 
 package_root = os.path.abspath(os.path.dirname(__file__))
@@ -53,12 +54,11 @@ setuptools.setup(
     platforms="Posix; MacOS X; Windows",
     include_package_data=True,
     install_requires=dependencies,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     classifiers=[
         release_status,
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
