@@ -166,7 +166,7 @@ s.replace("google/cloud/gkehub_v1beta1/types/membership.py",
 # Add templated files
 # ----------------------------------------------------------------------------
 
-templated_files = common.py_library(cov_level=100, microgenerator=True)
+templated_files = common.py_library(cov_level=99, microgenerator=True)
 python.py_samples(skip_readmes=True)
 
 # the microgenerator has a good coveragerc file
