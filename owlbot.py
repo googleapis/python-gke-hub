@@ -80,6 +80,33 @@ for library in s.get_staging_dirs(default_version):
             //container.googleapis.com/projects/my-"""
     )
 
+    # work around issues with docstrings
+    s.replace(
+        library / "google/cloud/**/*.py",
+        """resource.
+                \*\*JSON Example\*\*
+                ::""",
+        """resource. JSON Example.
+
+                .. code-block:: python\n""",
+    )
+
+    s.replace(
+        library / "google/cloud/**/*.py",
+        """\*\*YAML Example\*\*
+                ::""",
+        """\n                **YAML Example**
+
+                ::\n""",
+    )
+
+    s.replace(library / "google/cloud/**/*.py",
+        """                For a description of IAM and its features, see the `IAM
+                developer's""",
+        """\n                For a description of IAM and its features, see the `IAM
+                developer's"""
+    )
+
     excludes=[
         "setup.py",
         "README.rst",
