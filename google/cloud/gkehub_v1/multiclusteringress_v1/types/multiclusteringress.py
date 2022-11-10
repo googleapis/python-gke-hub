@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 
@@ -35,7 +37,7 @@ class FeatureSpec(proto.Message):
             ``projects/foo-proj/locations/global/memberships/bar``
     """
 
-    config_membership = proto.Field(
+    config_membership: str = proto.Field(
         proto.STRING,
         number=1,
     )

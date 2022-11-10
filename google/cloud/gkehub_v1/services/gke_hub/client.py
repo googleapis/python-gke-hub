@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -62,7 +73,7 @@ class GkeHubClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[GkeHubTransport]:
         """Returns an appropriate transport class.
 
@@ -375,7 +386,7 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, GkeHubTransport, None] = None,
+        transport: Optional[Union[str, GkeHubTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -473,11 +484,11 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def list_memberships(
         self,
-        request: Union[service.ListMembershipsRequest, dict] = None,
+        request: Optional[Union[service.ListMembershipsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListMembershipsPager:
         r"""Lists Memberships in a given project and location.
@@ -588,11 +599,11 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def list_features(
         self,
-        request: Union[service.ListFeaturesRequest, dict] = None,
+        request: Optional[Union[service.ListFeaturesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListFeaturesPager:
         r"""Lists Features in a given project and location.
@@ -702,11 +713,11 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def get_membership(
         self,
-        request: Union[service.GetMembershipRequest, dict] = None,
+        request: Optional[Union[service.GetMembershipRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> membership.Membership:
         r"""Gets the details of a Membership.
@@ -804,11 +815,11 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def get_feature(
         self,
-        request: Union[service.GetFeatureRequest, dict] = None,
+        request: Optional[Union[service.GetFeatureRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> feature.Feature:
         r"""Gets details of a single Feature.
@@ -905,13 +916,13 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def create_membership(
         self,
-        request: Union[service.CreateMembershipRequest, dict] = None,
+        request: Optional[Union[service.CreateMembershipRequest, dict]] = None,
         *,
-        parent: str = None,
-        resource: membership.Membership = None,
-        membership_id: str = None,
+        parent: Optional[str] = None,
+        resource: Optional[membership.Membership] = None,
+        membership_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Creates a new Membership.
@@ -1056,13 +1067,13 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def create_feature(
         self,
-        request: Union[service.CreateFeatureRequest, dict] = None,
+        request: Optional[Union[service.CreateFeatureRequest, dict]] = None,
         *,
-        parent: str = None,
-        resource: feature.Feature = None,
-        feature_id: str = None,
+        parent: Optional[str] = None,
+        resource: Optional[feature.Feature] = None,
+        feature_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Adds a new Feature.
@@ -1189,11 +1200,11 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def delete_membership(
         self,
-        request: Union[service.DeleteMembershipRequest, dict] = None,
+        request: Optional[Union[service.DeleteMembershipRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Removes a Membership.
@@ -1318,11 +1329,11 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def delete_feature(
         self,
-        request: Union[service.DeleteFeatureRequest, dict] = None,
+        request: Optional[Union[service.DeleteFeatureRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Removes a Feature.
@@ -1441,13 +1452,13 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def update_membership(
         self,
-        request: Union[service.UpdateMembershipRequest, dict] = None,
+        request: Optional[Union[service.UpdateMembershipRequest, dict]] = None,
         *,
-        name: str = None,
-        resource: membership.Membership = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        name: Optional[str] = None,
+        resource: Optional[membership.Membership] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Updates an existing Membership.
@@ -1583,13 +1594,13 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def update_feature(
         self,
-        request: Union[service.UpdateFeatureRequest, dict] = None,
+        request: Optional[Union[service.UpdateFeatureRequest, dict]] = None,
         *,
-        name: str = None,
-        resource: feature.Feature = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        name: Optional[str] = None,
+        resource: Optional[feature.Feature] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Updates an existing Feature.
@@ -1724,10 +1735,10 @@ class GkeHubClient(metaclass=GkeHubClientMeta):
 
     def generate_connect_manifest(
         self,
-        request: Union[service.GenerateConnectManifestRequest, dict] = None,
+        request: Optional[Union[service.GenerateConnectManifestRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.GenerateConnectManifestResponse:
         r"""Generates the manifest for deployment of the GKE connect agent.
