@@ -2,6 +2,10 @@
 
 .. include:: multiprocessing.rst
 
+This package includes clients for multiple versions of GKE Hub.
+By default, you will get version ``gkehub_v1``.
+
+
 API Reference
 -------------
 .. toctree::
@@ -9,10 +13,6 @@ API Reference
 
     gkehub_v1/services
     gkehub_v1/types
-    gkehub_v1/configmanagement_v1/services
-    gkehub_v1/configmanagement_v1/types
-    gkehub_v1/multiclusteringress_v1/services
-    gkehub_v1/multiclusteringress_v1/types
 
 API Reference
 -------------
@@ -29,6 +29,6 @@ Changelog
 For a list of all ``google-cloud-gke-hub`` releases:
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   changelog
+    changelog
