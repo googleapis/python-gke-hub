@@ -13,6 +13,10 @@ API Reference
 
     gkehub_v1/services
     gkehub_v1/types
+    gkehub_v1/configmanagement_v1/services
+    gkehub_v1/configmanagement_v1/types
+    gkehub_v1/multiclusteringress_v1/services
+    gkehub_v1/multiclusteringress_v1/types
 
 API Reference
 -------------

@@ -94,7 +94,6 @@ for library in s.get_staging_dirs(default_version):
     )
 
     excludes=[
-        "README.rst",
         "docs/index.rst",
         "docs/configmanagement_v1/**",
         "docs/multiclusteringress_v1/**",
@@ -117,7 +116,7 @@ templated_files = gcp.CommonTemplates().py_library(
     microgenerator=True,
     versions=gcp.common.detect_versions(path="./google", default_first=True),
 )
-s.move(templated_files, excludes=[".coveragerc", ".github/release-please.yml"])
+s.move(templated_files, excludes=[".coveragerc", ".github/release-please.yml", "docs/index.rst"])
 
 python.py_samples(skip_readmes=True)
 
