@@ -7,17 +7,7 @@
         "google/cloud/gkehub/gapic_version.py",
         {
           "type": "json",
-          "path": "samples/generated_samples/snippet_metadata_gkehub_v1beta1.json",
-          "jsonpath": "$.clientLibrary.version"
-        },
-        {
-          "type": "json",
           "path": "samples/generated_samples/snippet_metadata_google.cloud.gkehub.v1.json",
-          "jsonpath": "$.clientLibrary.version"
-        },
-        {
-          "type": "json",
-          "path": "samples/generated_samples/snippet_metadata_gkehub_v1.json",
           "jsonpath": "$.clientLibrary.version"
         },
         {
