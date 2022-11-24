@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from .client import GkeHubMembershipServiceClient
 from .async_client import GkeHubMembershipServiceAsyncClient
+from .client import GkeHubMembershipServiceClient
 
 __all__ = (
     "GkeHubMembershipServiceClient",

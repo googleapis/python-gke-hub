@@ -15,13 +15,11 @@
 #
 from typing import MutableMapping, MutableSequence
 
-import proto  # type: ignore
-
-from google.cloud.gkehub_v1.types import feature
-from google.cloud.gkehub_v1.types import membership
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
+import proto  # type: ignore
 
+from google.cloud.gkehub_v1.types import feature, membership
 
 __protobuf__ = proto.module(
     package="google.cloud.gkehub.v1",
