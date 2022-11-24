@@ -93,7 +93,23 @@ for library in s.get_staging_dirs(default_version):
     Attributes"""
     )
 
+    # workaround bug in the generator
+    s.replace(
+      library / "google/cloud/gkehub_v1/configmanagement_v1/__init__.py",
+      "from google.cloud.gkehub.configmanagement import gapic_version as package_version",
+      "from google.cloud.gkehub import gapic_version as package_version"
+    )
+
+    # workaround bug in the generator
+    s.replace(
+      library / "google/cloud/gkehub_v1/multiclusteringress_v1/__init__.py",
+      "from google.cloud.gkehub.multiclusteringress import gapic_version as package_version",
+      "from google.cloud.gkehub import gapic_version as package_version"
+    )
+
     excludes=[
+        "setup.py",
+        "testing/constraints-3.7.txt",
         "docs/index.rst",
         "docs/configmanagement_v1/**",
         "docs/multiclusteringress_v1/**",
