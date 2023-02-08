@@ -14,25 +14,27 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from google.api_core import operations_v1
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import (
+    gapic_v1,
+    operations_v1,
+    path_template,
+    rest_helpers,
+    rest_streaming,
+)
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -40,13 +42,12 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.gkehub_v1.types import feature
-from google.cloud.gkehub_v1.types import membership
-from google.cloud.gkehub_v1.types import service
 from google.longrunning import operations_pb2  # type: ignore
 
-from .base import GkeHubTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.gkehub_v1.types import feature, membership, service
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import GkeHubTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -163,7 +164,10 @@ class GkeHubRestInterceptor:
 
 
     """
-    def pre_create_feature(self, request: service.CreateFeatureRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateFeatureRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_feature(
+        self, request: service.CreateFeatureRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.CreateFeatureRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_feature
 
         Override in a subclass to manipulate the request or metadata
@@ -171,7 +175,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_create_feature(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_feature(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_feature
 
         Override in a subclass to manipulate the response
@@ -179,7 +185,12 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_membership(self, request: service.CreateMembershipRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateMembershipRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_membership(
+        self,
+        request: service.CreateMembershipRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.CreateMembershipRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_membership
 
         Override in a subclass to manipulate the request or metadata
@@ -187,7 +198,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_create_membership(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_membership(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_membership
 
         Override in a subclass to manipulate the response
@@ -195,7 +208,10 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_feature(self, request: service.DeleteFeatureRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteFeatureRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_feature(
+        self, request: service.DeleteFeatureRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.DeleteFeatureRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_feature
 
         Override in a subclass to manipulate the request or metadata
@@ -203,7 +219,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_feature(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_feature(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_feature
 
         Override in a subclass to manipulate the response
@@ -211,7 +229,12 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_membership(self, request: service.DeleteMembershipRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteMembershipRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_membership(
+        self,
+        request: service.DeleteMembershipRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.DeleteMembershipRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_membership
 
         Override in a subclass to manipulate the request or metadata
@@ -219,7 +242,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_membership(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_membership(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_membership
 
         Override in a subclass to manipulate the response
@@ -227,7 +252,12 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_generate_connect_manifest(self, request: service.GenerateConnectManifestRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GenerateConnectManifestRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_generate_connect_manifest(
+        self,
+        request: service.GenerateConnectManifestRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.GenerateConnectManifestRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for generate_connect_manifest
 
         Override in a subclass to manipulate the request or metadata
@@ -235,7 +265,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_generate_connect_manifest(self, response: service.GenerateConnectManifestResponse) -> service.GenerateConnectManifestResponse:
+    def post_generate_connect_manifest(
+        self, response: service.GenerateConnectManifestResponse
+    ) -> service.GenerateConnectManifestResponse:
         """Post-rpc interceptor for generate_connect_manifest
 
         Override in a subclass to manipulate the response
@@ -243,7 +275,10 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_feature(self, request: service.GetFeatureRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetFeatureRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_feature(
+        self, request: service.GetFeatureRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetFeatureRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_feature
 
         Override in a subclass to manipulate the request or metadata
@@ -259,7 +294,10 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_membership(self, request: service.GetMembershipRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetMembershipRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_membership(
+        self, request: service.GetMembershipRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetMembershipRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_membership
 
         Override in a subclass to manipulate the request or metadata
@@ -267,7 +305,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_get_membership(self, response: membership.Membership) -> membership.Membership:
+    def post_get_membership(
+        self, response: membership.Membership
+    ) -> membership.Membership:
         """Post-rpc interceptor for get_membership
 
         Override in a subclass to manipulate the response
@@ -275,7 +315,10 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_features(self, request: service.ListFeaturesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListFeaturesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_features(
+        self, request: service.ListFeaturesRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListFeaturesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_features
 
         Override in a subclass to manipulate the request or metadata
@@ -283,7 +326,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_list_features(self, response: service.ListFeaturesResponse) -> service.ListFeaturesResponse:
+    def post_list_features(
+        self, response: service.ListFeaturesResponse
+    ) -> service.ListFeaturesResponse:
         """Post-rpc interceptor for list_features
 
         Override in a subclass to manipulate the response
@@ -291,7 +336,12 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_memberships(self, request: service.ListMembershipsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListMembershipsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_memberships(
+        self,
+        request: service.ListMembershipsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.ListMembershipsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_memberships
 
         Override in a subclass to manipulate the request or metadata
@@ -299,7 +349,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_list_memberships(self, response: service.ListMembershipsResponse) -> service.ListMembershipsResponse:
+    def post_list_memberships(
+        self, response: service.ListMembershipsResponse
+    ) -> service.ListMembershipsResponse:
         """Post-rpc interceptor for list_memberships
 
         Override in a subclass to manipulate the response
@@ -307,7 +359,10 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_feature(self, request: service.UpdateFeatureRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateFeatureRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_feature(
+        self, request: service.UpdateFeatureRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.UpdateFeatureRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_feature
 
         Override in a subclass to manipulate the request or metadata
@@ -315,7 +370,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_update_feature(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_feature(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_feature
 
         Override in a subclass to manipulate the response
@@ -323,7 +380,12 @@ class GkeHubRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_membership(self, request: service.UpdateMembershipRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateMembershipRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_membership(
+        self,
+        request: service.UpdateMembershipRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.UpdateMembershipRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_membership
 
         Override in a subclass to manipulate the request or metadata
@@ -331,7 +393,9 @@ class GkeHubRestInterceptor:
         """
         return request, metadata
 
-    def post_update_membership(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_membership(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_membership
 
         Override in a subclass to manipulate the response
@@ -374,20 +438,21 @@ class GkeHubRestTransport(GkeHubTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'gkehub.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[GkeHubRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "gkehub.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[GkeHubRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -426,7 +491,9 @@ class GkeHubRestTransport(GkeHubTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -437,10 +504,11 @@ class GkeHubRestTransport(GkeHubTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         self._operations_client: Optional[operations_v1.AbstractOperationsClient] = None
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
@@ -456,18 +524,20 @@ class GkeHubRestTransport(GkeHubTransport):
         """
         # Only create a new client if we do not already have one.
         if self._operations_client is None:
-            http_options: Dict[str, List[Dict[str, str]]] = {
-            }
+            http_options: Dict[str, List[Dict[str, str]]] = {}
 
             rest_transport = operations_v1.OperationsRestTransport(
-                    host=self._host,
-                    # use the credentials which are saved
-                    credentials=self._credentials,
-                    scopes=self._scopes,
-                    http_options=http_options,
-                    path_prefix="v1")
+                host=self._host,
+                # use the credentials which are saved
+                credentials=self._credentials,
+                scopes=self._scopes,
+                http_options=http_options,
+                path_prefix="v1",
+            )
 
-            self._operations_client = operations_v1.AbstractOperationsClient(transport=rest_transport)
+            self._operations_client = operations_v1.AbstractOperationsClient(
+                transport=rest_transport
+            )
 
         # Return the client from cache.
         return self._operations_client
@@ -476,12 +546,14 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("CreateFeature")
 
-        def __call__(self,
-                request: service.CreateFeatureRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.CreateFeatureRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create feature method over HTTP.
 
             Args:
@@ -501,11 +573,12 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/features',
-                'body': 'resource',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/features",
+                    "body": "resource",
+                },
             ]
             request, metadata = self._interceptor.pre_create_feature(request, metadata)
             pb_request = service.CreateFeatureRequest.pb(request)
@@ -514,32 +587,34 @@ class GkeHubRestTransport(GkeHubTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -556,19 +631,26 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("CreateMembership")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "membershipId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "membershipId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateMembershipRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.CreateMembershipRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create membership method over HTTP.
 
             Args:
@@ -590,46 +672,51 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/memberships',
-                'body': 'resource',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/memberships",
+                    "body": "resource",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_membership(request, metadata)
+            request, metadata = self._interceptor.pre_create_membership(
+                request, metadata
+            )
             pb_request = service.CreateMembershipRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -646,12 +733,14 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("DeleteFeature")
 
-        def __call__(self,
-                request: service.DeleteFeatureRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.DeleteFeatureRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete feature method over HTTP.
 
             Args:
@@ -671,36 +760,39 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/features/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/features/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_feature(request, metadata)
             pb_request = service.DeleteFeatureRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -717,19 +809,24 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("DeleteMembership")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DeleteMembershipRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.DeleteMembershipRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete membership method over HTTP.
 
             Args:
@@ -749,37 +846,42 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/memberships/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/memberships/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_membership(request, metadata)
+            request, metadata = self._interceptor.pre_delete_membership(
+                request, metadata
+            )
             pb_request = service.DeleteMembershipRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -796,19 +898,24 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("GenerateConnectManifest")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GenerateConnectManifestRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.GenerateConnectManifestResponse:
+        def __call__(
+            self,
+            request: service.GenerateConnectManifestRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.GenerateConnectManifestResponse:
             r"""Call the generate connect manifest method over HTTP.
 
             Args:
@@ -830,37 +937,42 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/memberships/*}:generateConnectManifest',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/memberships/*}:generateConnectManifest",
+                },
             ]
-            request, metadata = self._interceptor.pre_generate_connect_manifest(request, metadata)
+            request, metadata = self._interceptor.pre_generate_connect_manifest(
+                request, metadata
+            )
             pb_request = service.GenerateConnectManifestRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -879,12 +991,14 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("GetFeature")
 
-        def __call__(self,
-                request: service.GetFeatureRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> feature.Feature:
+        def __call__(
+            self,
+            request: service.GetFeatureRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> feature.Feature:
             r"""Call the get feature method over HTTP.
 
             Args:
@@ -903,36 +1017,39 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/features/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/features/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_feature(request, metadata)
             pb_request = service.GetFeatureRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -951,19 +1068,24 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("GetMembership")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetMembershipRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> membership.Membership:
+        def __call__(
+            self,
+            request: service.GetMembershipRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> membership.Membership:
             r"""Call the get membership method over HTTP.
 
             Args:
@@ -982,37 +1104,40 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/memberships/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/memberships/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_membership(request, metadata)
             pb_request = service.GetMembershipRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1031,12 +1156,14 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("ListFeatures")
 
-        def __call__(self,
-                request: service.ListFeaturesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListFeaturesResponse:
+        def __call__(
+            self,
+            request: service.ListFeaturesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListFeaturesResponse:
             r"""Call the list features method over HTTP.
 
             Args:
@@ -1053,36 +1180,39 @@ class GkeHubRestTransport(GkeHubTransport):
                     Response message for the ``GkeHub.ListFeatures`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/features',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/features",
+                },
             ]
             request, metadata = self._interceptor.pre_list_features(request, metadata)
             pb_request = service.ListFeaturesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1101,19 +1231,24 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("ListMemberships")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListMembershipsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListMembershipsResponse:
+        def __call__(
+            self,
+            request: service.ListMembershipsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListMembershipsResponse:
             r"""Call the list memberships method over HTTP.
 
             Args:
@@ -1132,37 +1267,42 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/memberships',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/memberships",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_memberships(request, metadata)
+            request, metadata = self._interceptor.pre_list_memberships(
+                request, metadata
+            )
             pb_request = service.ListMembershipsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1181,12 +1321,14 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("UpdateFeature")
 
-        def __call__(self,
-                request: service.UpdateFeatureRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.UpdateFeatureRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update feature method over HTTP.
 
             Args:
@@ -1206,11 +1348,12 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{name=projects/*/locations/*/features/*}',
-                'body': 'resource',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{name=projects/*/locations/*/features/*}",
+                    "body": "resource",
+                },
             ]
             request, metadata = self._interceptor.pre_update_feature(request, metadata)
             pb_request = service.UpdateFeatureRequest.pb(request)
@@ -1219,32 +1362,34 @@ class GkeHubRestTransport(GkeHubTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1261,19 +1406,26 @@ class GkeHubRestTransport(GkeHubTransport):
         def __hash__(self):
             return hash("UpdateMembership")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.UpdateMembershipRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.UpdateMembershipRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update membership method over HTTP.
 
             Args:
@@ -1293,46 +1445,51 @@ class GkeHubRestTransport(GkeHubTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{name=projects/*/locations/*/memberships/*}',
-                'body': 'resource',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{name=projects/*/locations/*/memberships/*}",
+                    "body": "resource",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_membership(request, metadata)
+            request, metadata = self._interceptor.pre_update_membership(
+                request, metadata
+            )
             pb_request = service.UpdateMembershipRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1346,92 +1503,93 @@ class GkeHubRestTransport(GkeHubTransport):
             return resp
 
     @property
-    def create_feature(self) -> Callable[
-            [service.CreateFeatureRequest],
-            operations_pb2.Operation]:
+    def create_feature(
+        self,
+    ) -> Callable[[service.CreateFeatureRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateFeature(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateFeature(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_membership(self) -> Callable[
-            [service.CreateMembershipRequest],
-            operations_pb2.Operation]:
+    def create_membership(
+        self,
+    ) -> Callable[[service.CreateMembershipRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateMembership(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateMembership(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_feature(self) -> Callable[
-            [service.DeleteFeatureRequest],
-            operations_pb2.Operation]:
+    def delete_feature(
+        self,
+    ) -> Callable[[service.DeleteFeatureRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteFeature(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteFeature(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_membership(self) -> Callable[
-            [service.DeleteMembershipRequest],
-            operations_pb2.Operation]:
+    def delete_membership(
+        self,
+    ) -> Callable[[service.DeleteMembershipRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteMembership(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteMembership(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def generate_connect_manifest(self) -> Callable[
-            [service.GenerateConnectManifestRequest],
-            service.GenerateConnectManifestResponse]:
+    def generate_connect_manifest(
+        self,
+    ) -> Callable[
+        [service.GenerateConnectManifestRequest],
+        service.GenerateConnectManifestResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GenerateConnectManifest(self._session, self._host, self._interceptor) # type: ignore
+        return self._GenerateConnectManifest(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_feature(self) -> Callable[
-            [service.GetFeatureRequest],
-            feature.Feature]:
+    def get_feature(self) -> Callable[[service.GetFeatureRequest], feature.Feature]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetFeature(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetFeature(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_membership(self) -> Callable[
-            [service.GetMembershipRequest],
-            membership.Membership]:
+    def get_membership(
+        self,
+    ) -> Callable[[service.GetMembershipRequest], membership.Membership]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetMembership(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetMembership(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_features(self) -> Callable[
-            [service.ListFeaturesRequest],
-            service.ListFeaturesResponse]:
+    def list_features(
+        self,
+    ) -> Callable[[service.ListFeaturesRequest], service.ListFeaturesResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListFeatures(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListFeatures(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_memberships(self) -> Callable[
-            [service.ListMembershipsRequest],
-            service.ListMembershipsResponse]:
+    def list_memberships(
+        self,
+    ) -> Callable[[service.ListMembershipsRequest], service.ListMembershipsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListMemberships(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListMemberships(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_feature(self) -> Callable[
-            [service.UpdateFeatureRequest],
-            operations_pb2.Operation]:
+    def update_feature(
+        self,
+    ) -> Callable[[service.UpdateFeatureRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateFeature(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateFeature(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_membership(self) -> Callable[
-            [service.UpdateMembershipRequest],
-            operations_pb2.Operation]:
+    def update_membership(
+        self,
+    ) -> Callable[[service.UpdateMembershipRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateMembership(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateMembership(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -1441,6 +1599,4 @@ class GkeHubRestTransport(GkeHubTransport):
         self._session.close()
 
 
-__all__=(
-    'GkeHubRestTransport',
-)
+__all__ = ("GkeHubRestTransport",)
