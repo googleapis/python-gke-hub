@@ -18,7 +18,6 @@ API Reference
     gkehub_v1/multiclusteringress_v1/services_
     gkehub_v1/multiclusteringress_v1/types_
 
-
 API Reference
 -------------
 .. toctree::
