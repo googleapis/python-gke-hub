@@ -1,0 +1,2 @@
+recursive-include google/cloud/gkehub/configmanagement *.py
+recursive-include google/cloud/gkehub/configmanagement_v1 *.py
